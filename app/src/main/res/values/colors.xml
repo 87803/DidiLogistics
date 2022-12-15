@@ -8,5 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#f6f6f6</color>
-<color name="blue_bg_button">#1CAEFA</color>
+    <color name="blue_bg_button">#1CAEFA</color>
+    <color name="grey_order_cancel">#757575</color>
 </resources>

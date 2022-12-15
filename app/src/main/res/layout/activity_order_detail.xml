@@ -136,7 +136,9 @@
                     android:layout_marginLeft="20dp"
                     android:text="@{orderDetailViewModel.orderDetail.startPlaceProvince +'省'+' ' +orderDetailViewModel.orderDetail.startPlaceCity +'市'+' '+ orderDetailViewModel.orderDetail.startPlaceDistrict+'区'}"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:maxLines="2"
+                    android:ellipsize="end" />
             </TableRow>
 
             <TableRow>

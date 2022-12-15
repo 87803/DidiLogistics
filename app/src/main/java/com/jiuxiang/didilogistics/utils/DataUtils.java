@@ -6,8 +6,8 @@ import android.content.SharedPreferences;
 import com.alibaba.fastjson.JSONObject;
 import com.jiuxiang.didilogistics.beans.App;
 import com.jiuxiang.didilogistics.beans.User;
-import com.jiuxiang.didilogistics.ui.MainActivity;
 import com.jiuxiang.didilogistics.ui.login.LoginActivity;
+import com.jiuxiang.didilogistics.ui.main.MainActivity;
 
 public class DataUtils {
     public static void saveTokenAndUserInfo(LoginActivity loginActivity, String token, User userinfo) {

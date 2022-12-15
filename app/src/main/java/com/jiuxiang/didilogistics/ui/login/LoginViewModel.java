@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.alibaba.fastjson.JSONObject;
 import com.jiuxiang.didilogistics.beans.App;
 import com.jiuxiang.didilogistics.beans.User;
-import com.jiuxiang.didilogistics.ui.MainActivity;
+import com.jiuxiang.didilogistics.ui.main.MainActivity;
 import com.jiuxiang.didilogistics.utils.DataUtils;
 import com.jiuxiang.didilogistics.utils.HTTPResult;
 import com.jiuxiang.didilogistics.utils.HTTPUtils;

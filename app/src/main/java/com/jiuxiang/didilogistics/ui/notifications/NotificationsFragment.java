@@ -1,11 +1,9 @@
 package com.jiuxiang.didilogistics.ui.notifications;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -14,11 +12,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.jiuxiang.didilogistics.BR;
 import com.jiuxiang.didilogistics.R;
-import com.jiuxiang.didilogistics.beans.App;
 import com.jiuxiang.didilogistics.databinding.FragmentNotificationsBinding;
-import com.jiuxiang.didilogistics.ui.MainActivity;
-import com.jiuxiang.didilogistics.ui.home.HomeViewModel;
-import com.jiuxiang.didilogistics.ui.orderDetail.OrderDetailActivity;
+import com.jiuxiang.didilogistics.ui.main.MainActivity;
 
 //import com.jiuxiang.didilogistics.databinding.FragmentNotificationsBinding;
 
@@ -34,10 +29,9 @@ public class NotificationsFragment extends Fragment {
         View root = binding.getRoot();
         binding.setVariable(BR.notificationViewModel, notificationsViewModel);
         binding.setLifecycleOwner(getViewLifecycleOwner());
-
-        notificationsViewModel.setNotificationsFragment(this);
-        notificationsViewModel.setBinding(binding);
+//        notificationsViewModel.setMainActivity((MainActivity) getActivity());
         notificationsViewModel.setMainActivity((MainActivity) getActivity());
+        notificationsViewModel.setBinding(binding);
 
         return root;
     }

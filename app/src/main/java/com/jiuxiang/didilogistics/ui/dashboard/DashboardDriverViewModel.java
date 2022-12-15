@@ -5,20 +5,14 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jiuxiang.didilogistics.beans.Demand;
-import com.jiuxiang.didilogistics.databinding.FragmentDashboardBinding;
 import com.jiuxiang.didilogistics.databinding.FragmentDashboardDriverBinding;
-import com.jiuxiang.didilogistics.databinding.FragmentHomeBinding;
-import com.jiuxiang.didilogistics.ui.MainActivity;
 import com.jiuxiang.didilogistics.ui.home.DemandAdapter;
-import com.jiuxiang.didilogistics.ui.home.HomeFragment;
-import com.jiuxiang.didilogistics.ui.home.HomeViewModel;
+import com.jiuxiang.didilogistics.ui.main.MainActivity;
 import com.jiuxiang.didilogistics.ui.orderDetail.OrderDetailActivity;
 import com.jiuxiang.didilogistics.utils.HTTPResult;
 import com.jiuxiang.didilogistics.utils.HTTPUtils;
@@ -39,7 +33,7 @@ public class DashboardDriverViewModel extends ViewModel {
     }
 
     public void loadData() {
-        HTTPUtils.get("/auth/demand", new HTTPResult() {
+        HTTPUtils.get("/auth/demand?order=true", new HTTPResult() {
             @Override
             public void onSuccess(JSONObject result) {
                 System.out.println(result);

@@ -17,7 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.jiuxiang.didilogistics.R;
 import com.jiuxiang.didilogistics.beans.App;
 import com.jiuxiang.didilogistics.databinding.FragmentHomeBinding;
-import com.jiuxiang.didilogistics.ui.MainActivity;
+import com.jiuxiang.didilogistics.ui.main.MainActivity;
 import com.jiuxiang.didilogistics.ui.postDemand.PostDemandActivity;
 
 //import com.jiuxiang.didilogistics.databinding.FragmentHomeBinding;

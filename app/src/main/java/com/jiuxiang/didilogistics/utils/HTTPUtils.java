@@ -41,6 +41,7 @@ public class HTTPUtils {
                     System.out.println(result);
                     httpResult.onSuccess(JSONObject.parseObject(result));
                 } catch (Exception e) {
+                    System.out.println(e.getMessage());
                     httpResult.onFailure("服务器未能处理您的请求" + e.getMessage());
                 }
             }
@@ -68,6 +69,7 @@ public class HTTPUtils {
                     System.out.println(result);
                     httpResult.onSuccess(JSONObject.parseObject(result));
                 } catch (Exception e) {
+                    System.out.println(e.getMessage());
                     httpResult.onFailure("服务器未能处理您的请求，请检查提交的数据是否正确" + e.getMessage());
                 }
 //                String result = Objects.requireNonNull(response.body()).string();

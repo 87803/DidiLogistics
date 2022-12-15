@@ -9,6 +9,7 @@ public class App {
     static private String token = "";
     static private Handler homeFragmentHandler; //首页的handler，用于刷新首页订单列表数据
     static private Handler userInfoFragmentHandler; //我的页面的handler，用于刷新用户基本信息
+    static private Handler orderDetailHandler; //订单详情页面的handler，用于刷新订单详情数据
 
     public static User getUser() {
         return user;
@@ -40,5 +41,13 @@ public class App {
 
     public static void setUserInfoFragmentHandler(Handler userInfoFragmentHandler) {
         App.userInfoFragmentHandler = userInfoFragmentHandler;
+    }
+
+    public static Handler getOrderDetailHandler() {
+        return orderDetailHandler;
+    }
+
+    public static void setOrderDetailHandler(Handler orderDetailHandler) {
+        App.orderDetailHandler = orderDetailHandler;
     }
 }

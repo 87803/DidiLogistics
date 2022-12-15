@@ -1,58 +1,21 @@
 package com.jiuxiang.didilogistics.ui.orderDetail;
 
-import android.annotation.SuppressLint;
-import android.os.Handler;
 import android.os.Message;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.alibaba.fastjson.JSONObject;
+import com.jiuxiang.didilogistics.beans.App;
 import com.jiuxiang.didilogistics.beans.OrderDetail;
-import com.jiuxiang.didilogistics.ui.postDemand.PostDemandActivity;
 import com.jiuxiang.didilogistics.utils.HTTPResult;
 import com.jiuxiang.didilogistics.utils.HTTPUtils;
-
-import java.util.Date;
 
 public class OrderDetailViewModel extends ViewModel {
     private OrderDetailActivity orderDetailActivity;
     private MutableLiveData<OrderDetail> orderDetail;
-    @SuppressLint("HandlerLeak")
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-//            int arg1=msg.arg1;
-//            String info= (String) msg.obj;
-            if (msg.what == 1) {
-//                System.out.println("更新列表");
-                orderDetail.setValue((OrderDetail) msg.obj);
-                if (((OrderDetail) msg.obj).getDriverName() == null) {
-                    orderDetailActivity.binding.driverPhone.setVisibility(View.GONE);
-                    orderDetailActivity.binding.driverName.setVisibility(View.GONE);
-                }
-                switch (((OrderDetail) msg.obj).getState()) {
-                    case "待接单":
-                    case "已接单":
-                        break;
-                    case "进行中":
-                        orderDetailActivity.binding.btn.setText("请等待订单完成后支付");
-                        orderDetailActivity.binding.btn.setEnabled(false);
-                        break;
-                    case "待支付":
-                        orderDetailActivity.binding.btn.setText("支付");
-                        break;
-                    case "已完成":
-                    case "已取消":
-                        orderDetailActivity.binding.btn.setVisibility(View.GONE);
-                        break;
-                }
-            }
-        }
-    };
+
 
     public OrderDetailViewModel() {
         orderDetail = new MutableLiveData<>();
@@ -63,10 +26,14 @@ public class OrderDetailViewModel extends ViewModel {
             @Override
             public void onSuccess(JSONObject result) {
                 if (result.getInteger("code") == 200) {
+                    OrderDetail orderDetailData = result.getObject("data", OrderDetail.class);
+                    System.out.println(orderDetailData.getDeliverTime());
+                    orderDetailActivity.runOnUiThread(() -> {
+                        orderDetail.setValue(orderDetailData);
+                    });
                     Message message = new Message();
                     message.what = 1;
-                    message.obj = result.getObject("data", OrderDetail.class);
-                    handler.sendMessage(message);
+                    App.getOrderDetailHandler().sendMessage(message);
                 } else {
                     orderDetailActivity.runOnUiThread(() -> {
                         Toast.makeText(orderDetailActivity, "获取订单详情失败，" + result.getString("msg"), Toast.LENGTH_SHORT).show();
@@ -78,6 +45,38 @@ public class OrderDetailViewModel extends ViewModel {
             public void onFailure(String error) {
                 orderDetailActivity.runOnUiThread(() -> {
                     Toast.makeText(orderDetailActivity, "获取信息失败，请稍后再试，" + error, Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
+    }
+
+    public void updateOrder(int type) {
+        //0:支付 1:取消
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("orderID", orderDetail.getValue().getOrderID());
+        jsonObject.put("type", type);
+        HTTPUtils.post("/auth/order", jsonObject.toJSONString(), new HTTPResult() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                if (result.getInteger("code") == 200) {
+                    orderDetailActivity.runOnUiThread(() -> {
+                        Toast.makeText(orderDetailActivity, "操作成功", Toast.LENGTH_SHORT).show();
+                        loadData(orderDetail.getValue().getOrderID()); //重新加载数据
+                        Message message = new Message();
+                        message.what = 1;
+                        App.getHomeFragmentHandler().sendMessage(message);//刷新首页数据
+                    });
+                } else {
+                    orderDetailActivity.runOnUiThread(() -> {
+                        Toast.makeText(orderDetailActivity, "操作失败，" + result.getString("msg"), Toast.LENGTH_LONG).show();
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(String error) {
+                orderDetailActivity.runOnUiThread(() -> {
+                    Toast.makeText(orderDetailActivity, "操作失败，请稍后再试，" + error, Toast.LENGTH_LONG).show();
                 });
             }
         });

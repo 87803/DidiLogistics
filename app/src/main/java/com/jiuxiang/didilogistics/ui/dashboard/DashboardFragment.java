@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -18,11 +16,8 @@ import com.jiuxiang.didilogistics.R;
 import com.jiuxiang.didilogistics.beans.App;
 import com.jiuxiang.didilogistics.databinding.FragmentDashboardBinding;
 import com.jiuxiang.didilogistics.databinding.FragmentDashboardDriverBinding;
-import com.jiuxiang.didilogistics.ui.MainActivity;
 import com.jiuxiang.didilogistics.ui.home.HomeViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.jiuxiang.didilogistics.ui.main.MainActivity;
 
 //import com.jiuxiang.didilogistics.databinding.FragmentDashboardBinding;
 

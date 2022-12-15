@@ -1,8 +1,6 @@
-package com.jiuxiang.didilogistics.ui;
+package com.jiuxiang.didilogistics.ui.main;
 
 import android.os.Bundle;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;

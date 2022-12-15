@@ -1,24 +1,22 @@
 package com.jiuxiang.didilogistics.ui.login;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.alibaba.fastjson.JSONObject;
 import com.jiuxiang.didilogistics.BR;
 import com.jiuxiang.didilogistics.R;
 import com.jiuxiang.didilogistics.beans.App;
 import com.jiuxiang.didilogistics.databinding.ActivityLoginBinding;
-import com.jiuxiang.didilogistics.ui.MainActivity;
+import com.jiuxiang.didilogistics.ui.main.MainActivity;
 import com.jiuxiang.didilogistics.ui.register.RegisterActivity;
-import com.jiuxiang.didilogistics.ui.register.RegisterViewModel;
 import com.jiuxiang.didilogistics.utils.DataUtils;
 
 public class LoginActivity extends AppCompatActivity {

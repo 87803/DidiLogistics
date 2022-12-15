@@ -5,19 +5,13 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.jiuxiang.didilogistics.beans.Demand;
 import com.jiuxiang.didilogistics.beans.Message;
-import com.jiuxiang.didilogistics.databinding.FragmentHomeBinding;
 import com.jiuxiang.didilogistics.databinding.FragmentNotificationsBinding;
-import com.jiuxiang.didilogistics.ui.MainActivity;
-import com.jiuxiang.didilogistics.ui.home.DemandAdapter;
-import com.jiuxiang.didilogistics.ui.home.HomeFragment;
+import com.jiuxiang.didilogistics.ui.main.MainActivity;
 import com.jiuxiang.didilogistics.ui.orderDetail.OrderDetailActivity;
 import com.jiuxiang.didilogistics.utils.HTTPResult;
 import com.jiuxiang.didilogistics.utils.HTTPUtils;
@@ -30,7 +24,6 @@ public class NotificationsViewModel extends ViewModel {
     private static FragmentNotificationsBinding binding;
     @SuppressLint("StaticFieldLeak")
     private static MainActivity mainActivity;
-    private static NotificationsFragment notificationsFragment;
 
     private final List<Message> data = new ArrayList<>();
 
@@ -63,21 +56,21 @@ public class NotificationsViewModel extends ViewModel {
     public void setBinding(FragmentNotificationsBinding binding) {
         this.binding = binding;
         //设置适配器方式和以往不同
-        binding.setAdapter(new MessageAdapter(notificationsFragment.getActivity(), data));
+        binding.setAdapter(new MessageAdapter(mainActivity, data));
         //通过binding来设置点击长按事件
         binding.listview.setOnItemClickListener((parent, view, position, id) -> {
-            Intent intent = new Intent(notificationsFragment.getActivity(), OrderDetailActivity.class);
+            Intent intent = new Intent(mainActivity, OrderDetailActivity.class);
             intent.putExtra("orderID", data.get(position).getOrderID());
-            notificationsFragment.getActivity().startActivity(intent);
+            mainActivity.startActivity(intent);
         });
     }
 
     public void setMainActivity(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
-        mainActivity.runOnUiThread(() -> {
-            binding.noDataTextView.setVisibility(data.size() == 0 ? View.VISIBLE : View.GONE);
-            binding.listview.setVisibility(data.size() == 0 ? View.GONE : View.VISIBLE);
-        });
+//        mainActivity.runOnUiThread(() -> {
+//            binding.noDataTextView.setVisibility(data.size() == 0 ? View.VISIBLE : View.GONE);
+//            binding.listview.setVisibility(data.size() == 0 ? View.GONE : View.VISIBLE);
+//        });
     }
 
     public FragmentNotificationsBinding getBinding() {
@@ -88,11 +81,4 @@ public class NotificationsViewModel extends ViewModel {
         return mainActivity;
     }
 
-    public NotificationsFragment getNotificationsFragment() {
-        return notificationsFragment;
-    }
-
-    public void setNotificationsFragment(NotificationsFragment notificationsFragment) {
-        this.notificationsFragment = notificationsFragment;
-    }
 }

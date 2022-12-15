@@ -38,7 +38,7 @@
     <string name="select_role">身份选择</string>
     <string name="driver">司机</string>
     <string name="consumer">货主</string>
-    <string name="postDemand">需求发布</string>
+    <string name="postDemand">发布需求</string>
 
     <string name="demo_info_text">Warning: \n\nFor demonstration purpose, the assembling and signing of the request parameters are done on the client side.\nHowever, in practice, both assembling and signing MUST BE carried out on the server side.</string>
     <string name="pay_with_alipay">Pay with Alipay</string>
@@ -78,4 +78,7 @@
     <string name="driver_state_offline">暂停接单</string>
     <string name="modify_tip">提示：如果无需修改密码，则不用填写密码相关字段</string>
     <string name="submit_modify">提交修改</string>
+    <string name="driver_user">滴滴物流司机用户</string>
+    <string name="unset">未设置</string>
+    <string name="new_user_tip">提示：新用户请尽快完善信息，以免影响后续使用</string>
 </resources>

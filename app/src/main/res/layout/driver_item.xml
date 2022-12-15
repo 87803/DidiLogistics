@@ -30,11 +30,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <androidx.cardview.widget.CardView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/avatar"
-                        android:layout_marginRight="10dp" />
+                        android:foreground="@drawable/driver"
+                        app:cardCornerRadius="50dp"
+                        android:layout_marginRight="10dp"></androidx.cardview.widget.CardView>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -45,6 +46,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@{driverBean.name}"
+                            android:hint="@string/driver_user"
                             android:textColor="#000000" />
 
                         <TextView
@@ -81,7 +83,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@{driverBean.curCity}"
-                            android:textColor="#000000" />
+                            android:textColor="#000000"
+                            android:hint="@string/unset" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -94,7 +97,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@{driverBean.desCity}"
-                            android:textColor="#000000" />
+                            android:textColor="#000000"
+                            android:hint="@string/unset" />
                     </TableRow>
 
                     <TableRow>
@@ -110,7 +114,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@{driverBean.carLength}"
-                            android:textColor="#000000" />
+                            android:textColor="#000000"
+                            android:hint="@string/unset" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -123,7 +128,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@{driverBean.carWeight}"
-                            android:textColor="#000000" />
+                            android:textColor="#000000"
+                            android:hint="@string/unset" />
                     </TableRow>
 
                     <TableRow>
@@ -139,7 +145,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@{driverBean.phone}"
-                            android:textColor="#000000" />
+                            android:textColor="#000000"
+                            android:hint="@string/unset" />
                     </TableRow>
                 </TableLayout>
 

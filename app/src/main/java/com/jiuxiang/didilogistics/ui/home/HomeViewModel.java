@@ -2,12 +2,9 @@ package com.jiuxiang.didilogistics.ui.home;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -16,7 +13,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jiuxiang.didilogistics.beans.Demand;
 import com.jiuxiang.didilogistics.databinding.FragmentHomeBinding;
-import com.jiuxiang.didilogistics.ui.MainActivity;
+import com.jiuxiang.didilogistics.ui.main.MainActivity;
 import com.jiuxiang.didilogistics.ui.orderDetail.OrderDetailActivity;
 import com.jiuxiang.didilogistics.utils.HTTPResult;
 import com.jiuxiang.didilogistics.utils.HTTPUtils;
@@ -71,6 +68,7 @@ public class HomeViewModel extends ViewModel {
                 JSONArray data2 = result.getJSONArray("data");
                 data.addAll(data2.toJavaList(Demand.class));
                 mainActivity.runOnUiThread(() -> {
+                    Toast.makeText(mainActivity, "获取订单数据成功", Toast.LENGTH_SHORT).show();
                     binding.getAdapter().notifyDataSetChanged();
                     binding.noDataTextview.setVisibility(data.size() == 0 ? View.VISIBLE : View.GONE);
                     binding.listview.setVisibility(data.size() == 0 ? View.GONE : View.VISIBLE);
