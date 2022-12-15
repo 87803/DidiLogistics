@@ -24,13 +24,13 @@ public class NotificationsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        NotificationsViewModel.setMainActivity((MainActivity) getActivity());
         notificationsViewModel = new ViewModelProvider(this).get(NotificationsViewModel.class);
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_notifications, container, false);
         View root = binding.getRoot();
         binding.setVariable(BR.notificationViewModel, notificationsViewModel);
         binding.setLifecycleOwner(getViewLifecycleOwner());
 //        notificationsViewModel.setMainActivity((MainActivity) getActivity());
-        notificationsViewModel.setMainActivity((MainActivity) getActivity());
         notificationsViewModel.setBinding(binding);
 
         return root;

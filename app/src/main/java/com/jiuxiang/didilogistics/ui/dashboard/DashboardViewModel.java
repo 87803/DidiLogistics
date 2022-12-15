@@ -25,10 +25,9 @@ public class DashboardViewModel extends ViewModel {
     @SuppressLint("StaticFieldLeak")
     private static MainActivity mainActivity;
     private final List<Driver> data = new ArrayList<>();
-    private List<Demand> orderData = new ArrayList<>();
+    private List<Demand> orderData;
 
     public DashboardViewModel() {
-        data.add(new Driver());
         loadData();
     }
 
@@ -74,6 +73,22 @@ public class DashboardViewModel extends ViewModel {
             AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
             builder.setTitle("请选择要推送的订单");
             builder.setItems(arr, (dialog, which) -> {
+                String orderID = arr[which].split(" ")[0];
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("driverID", data.get(position).getUserID());
+                jsonObject.put("orderID", orderID);
+                jsonObject.put("type", 5);
+                HTTPUtils.post("/auth/order", jsonObject.toJSONString(), new HTTPResult() {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+                        mainActivity.runOnUiThread(() -> Toast.makeText(mainActivity, "推送成功", Toast.LENGTH_SHORT).show());
+                    }
+
+                    @Override
+                    public void onFailure(String error) {
+                        mainActivity.runOnUiThread(() -> Toast.makeText(mainActivity, "推送失败，请重试，" + error, Toast.LENGTH_LONG).show());
+                    }
+                });
 //                    String result = homeViewModel.getData()[which];
                 dialog.dismiss();
             });

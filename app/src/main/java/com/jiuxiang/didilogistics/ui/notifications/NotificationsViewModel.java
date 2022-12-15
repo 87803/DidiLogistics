@@ -65,8 +65,8 @@ public class NotificationsViewModel extends ViewModel {
         });
     }
 
-    public void setMainActivity(MainActivity mainActivity) {
-        this.mainActivity = mainActivity;
+    public static void setMainActivity(MainActivity mainActivity) {
+        NotificationsViewModel.mainActivity = mainActivity;
 //        mainActivity.runOnUiThread(() -> {
 //            binding.noDataTextView.setVisibility(data.size() == 0 ? View.VISIBLE : View.GONE);
 //            binding.listview.setVisibility(data.size() == 0 ? View.GONE : View.VISIBLE);

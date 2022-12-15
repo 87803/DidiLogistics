@@ -1,6 +1,7 @@
 package com.jiuxiang.didilogistics.ui.orderDetail;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.jiuxiang.didilogistics.BR;
 import com.jiuxiang.didilogistics.R;
+import com.jiuxiang.didilogistics.alipay.PayDemoActivity;
 import com.jiuxiang.didilogistics.beans.App;
 import com.jiuxiang.didilogistics.databinding.ActivityOrderDetailBinding;
 
@@ -26,8 +28,9 @@ public class OrderDetailActivity extends AppCompatActivity {
             super.handleMessage(msg);
 //            int arg1=msg.arg1;
 //            String info= (String) msg.obj;
+            if (msg.what == 0)//支付成功
+                orderDetailViewModel.updateOrder(0);
             if (msg.what == 1) {
-//                System.out.println("更新列表");
                 if (orderDetailViewModel.getOrderDetail().getValue().getDriverName() == null) {
                     binding.driverPhone.setVisibility(View.GONE);
                     binding.driverName.setVisibility(View.GONE);
@@ -93,7 +96,11 @@ public class OrderDetailActivity extends AppCompatActivity {
             if (binding.btn.getText().equals("支付订单")) {
                 builder.setMessage("是否确认支付？");
                 builder.setPositiveButton("确定", (dialog, which) -> {
-                    orderDetailViewModel.updateOrder(0);
+                    Intent intent = new Intent(this, PayDemoActivity.class);
+                    intent.putExtra("orderID", orderDetailViewModel.getOrderDetail().getValue().getOrderID());
+                    intent.putExtra("money", orderDetailViewModel.getOrderDetail().getValue().getPrice());
+                    intent.putExtra("description", orderDetailViewModel.getOrderDetail().getValue().getDescription());
+                    startActivity(intent);
                 });
             } else if (binding.btn.getText().equals("取消订单")) {
                 builder.setMessage("是否确认取消订单？");

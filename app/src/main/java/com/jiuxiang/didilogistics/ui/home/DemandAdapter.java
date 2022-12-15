@@ -51,6 +51,9 @@ public class DemandAdapter extends BaseAdapter {
         if (data.get(position).getState().equals("已取消")) {
             TextView textView = binding.state;
             textView.setTextColor(context.getResources().getColor(R.color.grey_order_cancel));
+        } else if (data.get(position).getState().equals("已完成")) {
+            TextView textView = binding.state;
+            textView.setTextColor(context.getResources().getColor(R.color.green_success));
         }
 
         return binding.getRoot();

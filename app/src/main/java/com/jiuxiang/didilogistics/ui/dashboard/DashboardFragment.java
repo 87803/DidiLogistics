@@ -57,11 +57,13 @@ public class DashboardFragment extends Fragment {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false);
             View root = binding.getRoot();
             binding.setVariable(BR.DashboardViewModel, dashboardViewModel);
-            dashboardViewModel.setBinding(binding);
+            System.out.println("DashboardViewModel:" + dashboardViewModel);
             //传入订单列表
-            HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-            ;    //用户的订单信息
-            dashboardViewModel.setOrderData(homeViewModel.getData());
+            HomeViewModel homeViewModel = new ViewModelProvider(getActivity()).get(HomeViewModel.class);
+            dashboardViewModel.setOrderData(homeViewModel.getData());//用户的订单信息
+            System.out.println("homeViewModel.getData():" + homeViewModel.getData());
+            dashboardViewModel.setBinding(binding);
+
 
             binding.setLifecycleOwner(getViewLifecycleOwner());
 //            final TextView textView = binding.textDashboard;

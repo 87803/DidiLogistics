@@ -1,5 +1,7 @@
 package com.jiuxiang.didilogistics.alipay.util;
 
+import com.jiuxiang.didilogistics.alipay.SignUtils;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -11,8 +13,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
-
-import com.jiuxiang.didilogistics.alipay.SignUtils;
 
 /**
  * 2.0 订单串本地签名逻辑
@@ -71,12 +71,12 @@ public class OrderInfoUtil2_0 {
     /**
      * 构造支付订单参数列表
      */
-    public static Map<String, String> buildOrderParamMap(String app_id, boolean rsa2, String price) {
+    public static Map<String, String> buildOrderParamMap(String app_id, boolean rsa2, String price, String orderInfo) {
         Map<String, String> keyValues = new HashMap<String, String>();
 
         keyValues.put("app_id", app_id);
 
-        keyValues.put("biz_content", "{\"timeout_express\":\"30m\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"total_amount\":\"" + price + "\",\"subject\":\"1\",\"body\":\"我是测试数据\",\"out_trade_no\":\"" + getOutTradeNo() + "\"}");
+        keyValues.put("biz_content", "{\"timeout_express\":\"30m\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"total_amount\":\"" + price + "\",\"subject\":\"" + orderInfo + "\",\"body\":\"我是测试数据\",\"out_trade_no\":\"" + getOutTradeNo() + "\"}");
 
         keyValues.put("charset", "utf-8");
 
