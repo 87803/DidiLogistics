@@ -1,21 +1,15 @@
 package com.jiuxiang.didilogistics.ui.postDemand;
 
+import android.app.DatePickerDialog;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.app.DatePickerDialog;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.DatePicker;
-
 import com.jiuxiang.didilogistics.BR;
 import com.jiuxiang.didilogistics.R;
-import com.jiuxiang.didilogistics.beans.PostDemand;
 import com.jiuxiang.didilogistics.databinding.ActivityPostDemandBinding;
-import com.jiuxiang.didilogistics.ui.login.LoginViewModel;
 import com.lljjcoder.Interface.OnCityItemClickListener;
 import com.lljjcoder.bean.CityBean;
 import com.lljjcoder.bean.DistrictBean;
@@ -25,6 +19,7 @@ import com.lljjcoder.style.citylist.Toast.ToastUtils;
 import com.lljjcoder.style.citypickerview.CityPickerView;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 public class PostDemandActivity extends AppCompatActivity {
@@ -56,6 +51,7 @@ public class PostDemandActivity extends AppCompatActivity {
                             + dayOfMonth), calendar.get(Calendar.YEAR), calendar
                     .get(Calendar.MONTH), calendar
                     .get(Calendar.DAY_OF_MONTH));
+            dialog.getDatePicker().setMinDate(new Date().getTime());
             dialog.show();
         });
 

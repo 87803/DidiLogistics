@@ -3,7 +3,6 @@ package com.jiuxiang.didilogistics.utils;
 import androidx.annotation.NonNull;
 
 import com.alibaba.fastjson.JSONObject;
-import com.jiuxiang.didilogistics.beans.App;
 
 import java.io.IOException;
 import java.util.Objects;

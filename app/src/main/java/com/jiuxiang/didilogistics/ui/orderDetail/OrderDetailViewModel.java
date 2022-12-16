@@ -1,5 +1,6 @@
 package com.jiuxiang.didilogistics.ui.orderDetail;
 
+import android.annotation.SuppressLint;
 import android.os.Message;
 import android.widget.Toast;
 
@@ -7,12 +8,13 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.alibaba.fastjson.JSONObject;
-import com.jiuxiang.didilogistics.beans.App;
 import com.jiuxiang.didilogistics.beans.OrderDetail;
+import com.jiuxiang.didilogistics.utils.App;
 import com.jiuxiang.didilogistics.utils.HTTPResult;
 import com.jiuxiang.didilogistics.utils.HTTPUtils;
 
 public class OrderDetailViewModel extends ViewModel {
+    @SuppressLint("StaticFieldLeak")
     private OrderDetailActivity orderDetailActivity;
     private MutableLiveData<OrderDetail> orderDetail;
 

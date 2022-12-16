@@ -1,19 +1,18 @@
 package com.jiuxiang.didilogistics.ui.modifyInfo;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import com.alibaba.fastjson.JSONObject;
 import com.jiuxiang.didilogistics.R;
-import com.jiuxiang.didilogistics.beans.App;
 import com.jiuxiang.didilogistics.beans.User;
 import com.jiuxiang.didilogistics.databinding.ActivityModifyInfoBinding;
-import com.jiuxiang.didilogistics.ui.postDemand.PostDemandActivity;
+import com.jiuxiang.didilogistics.utils.App;
 import com.jiuxiang.didilogistics.utils.HTTPResult;
 import com.jiuxiang.didilogistics.utils.HTTPUtils;
 import com.lljjcoder.Interface.OnCityItemClickListener;

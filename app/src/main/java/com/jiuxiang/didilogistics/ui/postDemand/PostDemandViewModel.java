@@ -1,6 +1,6 @@
 package com.jiuxiang.didilogistics.ui.postDemand;
 
-import android.os.Handler;
+import android.annotation.SuppressLint;
 import android.os.Message;
 import android.widget.Toast;
 
@@ -8,12 +8,13 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.alibaba.fastjson.JSONObject;
-import com.jiuxiang.didilogistics.beans.App;
 import com.jiuxiang.didilogistics.beans.PostDemand;
+import com.jiuxiang.didilogistics.utils.App;
 import com.jiuxiang.didilogistics.utils.HTTPResult;
 import com.jiuxiang.didilogistics.utils.HTTPUtils;
 
 public class PostDemandViewModel extends ViewModel {
+    @SuppressLint("StaticFieldLeak")
     private PostDemandActivity postDemandActivity;
 
     private PostDemand postDemand;
@@ -40,7 +41,6 @@ public class PostDemandViewModel extends ViewModel {
     }
 
     public void onClickPostDemand() {
-//        System.out.println(postDemand);
         try {
             postDemand.setPrice(Integer.parseInt(price));
             postDemand.setWeight(Double.parseDouble(weight));

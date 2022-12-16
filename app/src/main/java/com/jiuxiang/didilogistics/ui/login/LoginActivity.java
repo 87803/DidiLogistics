@@ -13,10 +13,10 @@ import androidx.lifecycle.ViewModelProvider;
 import com.alibaba.fastjson.JSONObject;
 import com.jiuxiang.didilogistics.BR;
 import com.jiuxiang.didilogistics.R;
-import com.jiuxiang.didilogistics.beans.App;
 import com.jiuxiang.didilogistics.databinding.ActivityLoginBinding;
 import com.jiuxiang.didilogistics.ui.main.MainActivity;
 import com.jiuxiang.didilogistics.ui.register.RegisterActivity;
+import com.jiuxiang.didilogistics.utils.App;
 import com.jiuxiang.didilogistics.utils.DataUtils;
 
 public class LoginActivity extends AppCompatActivity {

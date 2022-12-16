@@ -1,5 +1,6 @@
 package com.jiuxiang.didilogistics.ui.register;
 
+import android.annotation.SuppressLint;
 import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
@@ -12,6 +13,7 @@ import com.jiuxiang.didilogistics.utils.HTTPUtils;
 
 
 public class RegisterViewModel extends ViewModel {
+    @SuppressLint("StaticFieldLeak")
     private RegisterActivity registerActivity;
     public MutableLiveData<String> phone;
     public MutableLiveData<String> password;

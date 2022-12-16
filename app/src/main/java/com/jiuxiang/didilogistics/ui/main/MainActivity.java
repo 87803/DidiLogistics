@@ -9,8 +9,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.jiuxiang.didilogistics.R;
-import com.jiuxiang.didilogistics.beans.App;
 import com.jiuxiang.didilogistics.databinding.ActivityMainBinding;
+import com.jiuxiang.didilogistics.utils.App;
 //import com.jiuxiang.didilogistics.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {

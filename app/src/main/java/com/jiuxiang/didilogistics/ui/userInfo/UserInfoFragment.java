@@ -14,10 +14,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.jiuxiang.didilogistics.BR;
 import com.jiuxiang.didilogistics.R;
-import com.jiuxiang.didilogistics.beans.App;
 import com.jiuxiang.didilogistics.databinding.FragmentUserInfoBinding;
 import com.jiuxiang.didilogistics.ui.main.MainActivity;
 import com.jiuxiang.didilogistics.ui.modifyInfo.ModifyInfoActivity;
+import com.jiuxiang.didilogistics.utils.App;
 
 public class UserInfoFragment extends Fragment {
 
@@ -33,18 +33,17 @@ public class UserInfoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         userInfoViewModel = new ViewModelProvider(this).get(UserInfoViewModel.class);
-        userInfoViewModel.setMainActivity((MainActivity) getActivity());
-        userInfoViewModel.setUserInfoFragment(this);
+        UserInfoViewModel.setMainActivity((MainActivity) getActivity());
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_info, container, false);
         View root = binding.getRoot();
 
-        userInfoViewModel.setBinding(binding);
         binding.setVariable(BR.userViewModel, userInfoViewModel);
         binding.setLifecycleOwner(getViewLifecycleOwner());
 
         if (!App.getUser().isType())
             binding.driverTable.setVisibility(View.GONE);
+
         binding.modifyBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ModifyInfoActivity.class);
             startActivity(intent);

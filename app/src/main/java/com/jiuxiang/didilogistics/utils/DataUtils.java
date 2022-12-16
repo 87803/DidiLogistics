@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.alibaba.fastjson.JSONObject;
-import com.jiuxiang.didilogistics.beans.App;
 import com.jiuxiang.didilogistics.beans.User;
 import com.jiuxiang.didilogistics.ui.login.LoginActivity;
 import com.jiuxiang.didilogistics.ui.main.MainActivity;
@@ -24,10 +23,10 @@ public class DataUtils {
         editor.commit();
     }
 
-    public static void saveTokenAndUserInfo(MainActivity loginActivity, String token, User userinfo) {
+    public static void saveTokenAndUserInfo(MainActivity mainActivity, String token, User userinfo) {
         App.setToken(token);
         //步骤1：创建一个SharedPreferences对象
-        SharedPreferences sharedPreferences = loginActivity.getSharedPreferences("token", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = mainActivity.getSharedPreferences("token", Context.MODE_PRIVATE);
         //步骤2： 实例化SharedPreferences.Editor对象
         SharedPreferences.Editor editor = sharedPreferences.edit();
         //步骤3：将获取过来的值放入文件

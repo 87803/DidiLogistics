@@ -15,8 +15,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.jiuxiang.didilogistics.BR;
 import com.jiuxiang.didilogistics.R;
 import com.jiuxiang.didilogistics.alipay.PayDemoActivity;
-import com.jiuxiang.didilogistics.beans.App;
 import com.jiuxiang.didilogistics.databinding.ActivityOrderDetailBinding;
+import com.jiuxiang.didilogistics.utils.App;
 
 public class OrderDetailActivity extends AppCompatActivity {
     private OrderDetailViewModel orderDetailViewModel;
@@ -88,7 +88,6 @@ public class OrderDetailActivity extends AppCompatActivity {
         orderDetailViewModel.loadData(getIntent().getStringExtra("orderID"));
         binding.setVariable(BR.orderDetailViewModel, orderDetailViewModel);
         binding.setLifecycleOwner(this);
-        System.out.println("接受的数据" + getIntent().getStringExtra("orderID"));
 
         binding.btn.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);

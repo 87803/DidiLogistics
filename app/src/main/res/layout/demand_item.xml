@@ -179,14 +179,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingTop="4dp"
-                        android:paddingBottom="5dp"
                         android:background="#f68033"
-                        android:text="取消订单"
-                        android:textSize="12dp"
-                        android:textColor="@color/white"></TextView>
+                        android:paddingLeft="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp"
+                        android:text="查看订单详情"
+                        android:textColor="@color/white"
+                        android:textSize="12dp"></TextView>
                 </androidx.cardview.widget.CardView>
 
 

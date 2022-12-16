@@ -1,18 +1,13 @@
 package com.jiuxiang.didilogistics.ui.dashboard;
 
-import android.annotation.SuppressLint;
-import android.view.View;
-import android.widget.Toast;
+import android.os.Message;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModel;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.jiuxiang.didilogistics.beans.Demand;
 import com.jiuxiang.didilogistics.beans.Driver;
-import com.jiuxiang.didilogistics.databinding.FragmentDashboardBinding;
-import com.jiuxiang.didilogistics.ui.main.MainActivity;
+import com.jiuxiang.didilogistics.utils.App;
 import com.jiuxiang.didilogistics.utils.HTTPResult;
 import com.jiuxiang.didilogistics.utils.HTTPUtils;
 
@@ -20,12 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardViewModel extends ViewModel {
-    @SuppressLint("StaticFieldLeak")
-    private static FragmentDashboardBinding binding;
-    @SuppressLint("StaticFieldLeak")
-    private static MainActivity mainActivity;
     private final List<Driver> data = new ArrayList<>();
-    private List<Demand> orderData;
 
     public DashboardViewModel() {
         loadData();
@@ -39,91 +29,47 @@ public class DashboardViewModel extends ViewModel {
                 data.clear();
                 JSONArray data2 = result.getJSONArray("data");
                 data.addAll(data2.toJavaList(Driver.class));
-                mainActivity.runOnUiThread(() -> {
-                    Toast.makeText(mainActivity, "获取订单数据成功", Toast.LENGTH_SHORT).show();
-                    binding.getAdapter().notifyDataSetChanged();
-                    binding.noDataTextview.setVisibility(data.size() == 0 ? View.VISIBLE : View.GONE);
-                    binding.listview.setVisibility(data.size() == 0 ? View.GONE : View.VISIBLE);
-                });
+                Message message = App.getDashboardFragmentHandler().obtainMessage(3);
+                message.obj = "获取司机列表数据成功";
+                App.getDashboardFragmentHandler().sendMessage(message);
             }
 
             @Override
             public void onFailure(String error) {
-                mainActivity.runOnUiThread(() -> Toast.makeText(mainActivity, "获取订单数据失败，请重试，" + error, Toast.LENGTH_LONG).show());
+                Message message = App.getDashboardFragmentHandler().obtainMessage(3);
+                message.obj = "获取司机列表数据失败，请重试，" + error;
+                App.getDashboardFragmentHandler().sendMessage(message);
             }
         });
     }
 
-    public void setBinding(FragmentDashboardBinding binding) {
-        DashboardViewModel.binding = binding;
-        //设置适配器方式和以往不同
-        binding.setAdapter(new DriverAdapter(mainActivity, data));//
-//        binding.listview.setAdapter(binding.getAdp());
-        //通过binding来设置点击长按事件
-        binding.listview.setOnItemClickListener((parent, view, position, id) -> {
-            List<String> list = new ArrayList<>();
-            for (int i = 0; i < orderData.size(); i++) {
-                if (orderData.get(i).getState().equals("待接单"))   //只显示待接单的订单
-                    list.add(orderData.get(i).getOrderID() + " " + (orderData.get(i).getDescription() == null ? "无货物信息" : orderData.get(i).getDescription()));
+    public void pushOrder(String orderID, int position) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("driverID", getData().get(position).getUserID());
+        jsonObject.put("orderID", orderID);
+        jsonObject.put("type", 5);
+        HTTPUtils.post("/auth/order", jsonObject.toJSONString(), new HTTPResult() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                Message message = App.getDashboardFragmentHandler().obtainMessage(2);
+                if (result.getInteger("code") == 200) {
+                    message.obj = "推送成功";
+                } else {
+                    message.obj = result.getString("msg");
+                }
+                App.getDashboardFragmentHandler().sendMessage(message);
             }
-            String[] arr = list.toArray(new String[0]);
-            System.out.println(arr);
-//                String[] array = new String[100];
-//            String result;
-            AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
-            builder.setTitle("请选择要推送的订单");
-            builder.setItems(arr, (dialog, which) -> {
-                String orderID = arr[which].split(" ")[0];
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("driverID", data.get(position).getUserID());
-                jsonObject.put("orderID", orderID);
-                jsonObject.put("type", 5);
-                HTTPUtils.post("/auth/order", jsonObject.toJSONString(), new HTTPResult() {
-                    @Override
-                    public void onSuccess(JSONObject result) {
-                        mainActivity.runOnUiThread(() -> Toast.makeText(mainActivity, "推送成功", Toast.LENGTH_SHORT).show());
-                    }
 
-                    @Override
-                    public void onFailure(String error) {
-                        mainActivity.runOnUiThread(() -> Toast.makeText(mainActivity, "推送失败，请重试，" + error, Toast.LENGTH_LONG).show());
-                    }
-                });
-//                    String result = homeViewModel.getData()[which];
-                dialog.dismiss();
-            });
-            builder.show();
-//            Intent intent = new Intent(mainActivity, OrderDetailActivity.class);
-//            intent.putExtra("orderID", data.get(position).getOrderID());
-//            mainActivity.startActivity(intent);
-//            System.out.println("点击了" + position);
-//            System.out.println(data.get(position).getOrderID());
-            //点击事件
+            @Override
+            public void onFailure(String error) {
+                Message message = App.getDashboardFragmentHandler().obtainMessage(2);
+                message.obj = "推送失败，请重试，" + error;
+                App.getDashboardFragmentHandler().sendMessage(message);
+            }
         });
-    }
-
-    public static FragmentDashboardBinding getBinding() {
-        return binding;
-    }
-
-    public static MainActivity getMainActivity() {
-        return mainActivity;
-    }
-
-    public static void setMainActivity(MainActivity mainActivity) {
-        DashboardViewModel.mainActivity = mainActivity;
     }
 
     public List<Driver> getData() {
         return data;
-    }
-
-
-    public List<Demand> getOrderData() {
-        return orderData;
-    }
-
-    public void setOrderData(List<Demand> orderData) {
-        this.orderData = orderData;
     }
 }

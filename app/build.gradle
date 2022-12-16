@@ -30,9 +30,6 @@ android {
         viewBinding true
         dataBinding true
     }
-//    dataBinding {
-//        enabled = true
-//    }
 }
 
 dependencies {
@@ -55,6 +52,5 @@ dependencies {
     implementation 'com.alibaba:fastjson:2.0.21.graal'
 
     api 'com.alipay.sdk:alipaysdk-android:+@aar'
-//    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.4.1'
     implementation 'com.github.crazyandcoder:citypicker:6.0.2'
 }
