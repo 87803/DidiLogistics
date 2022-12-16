@@ -15,6 +15,7 @@ import com.jiuxiang.didilogistics.databinding.ActivityModifyInfoBinding;
 import com.jiuxiang.didilogistics.utils.App;
 import com.jiuxiang.didilogistics.utils.HTTPResult;
 import com.jiuxiang.didilogistics.utils.HTTPUtils;
+import com.jiuxiang.didilogistics.utils.MD5Utils;
 import com.lljjcoder.Interface.OnCityItemClickListener;
 import com.lljjcoder.bean.CityBean;
 import com.lljjcoder.bean.DistrictBean;
@@ -122,8 +123,8 @@ public class ModifyInfoActivity extends AppCompatActivity {
         user.setCarLength(carLength);
         user.setCarWeight(carWeight);
         JSONObject jsonObject = JSONObject.parseObject(JSONObject.toJSONString(user));
-        jsonObject.put("oldPassword", oldPassword);
-        jsonObject.put("newPassword", newPwd);
+        jsonObject.put("oldPassword", oldPassword.equals("") ? "" : MD5Utils.encrypt(oldPassword));
+        jsonObject.put("newPassword", oldPassword.equals("") ? "" : MD5Utils.encrypt(newPwd));
         HTTPUtils.post("/auth/modifyInfo", jsonObject.toJSONString(), new HTTPResult() {
             @Override
             public void onSuccess(JSONObject result) {

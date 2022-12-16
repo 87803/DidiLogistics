@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.jiuxiang.didilogistics.R;
 import com.jiuxiang.didilogistics.utils.HTTPResult;
 import com.jiuxiang.didilogistics.utils.HTTPUtils;
+import com.jiuxiang.didilogistics.utils.MD5Utils;
 
 
 public class RegisterViewModel extends ViewModel {
@@ -51,6 +52,7 @@ public class RegisterViewModel extends ViewModel {
             Toast.makeText(registerActivity, "密码不一致，请重新输入", Toast.LENGTH_LONG).show();
             return;
         }
+        jsonObject.put("password", MD5Utils.encrypt(jsonObject.getString("password")));
         String data = jsonObject.toJSONString();
         HTTPUtils.post("/register", data, new HTTPResult() {
             @Override
@@ -82,6 +84,24 @@ public class RegisterViewModel extends ViewModel {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("phone", getPhone().getValue());
         final boolean[] running = {true};
+        inviteCode.setValue("60s");
+        new Thread(() -> {
+            for (int i = 59; i >= 0; i--) {
+                if (!running[0]) {
+                    break;
+                }
+                inviteCode.postValue(i + "s");
+                if (i == 0) {
+                    codeBtnEnable.postValue(true);
+                    inviteCode.postValue("获取验证码");
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
 
         HTTPUtils.post("/verificationCode", jsonObject.toJSONString(), new HTTPResult() {
             @Override
@@ -101,22 +121,6 @@ public class RegisterViewModel extends ViewModel {
                 inviteCode.postValue("获取验证码");
             }
         });
-        inviteCode.setValue("60s");
-        new Thread(() -> {
-            for (int i = 59; i >= 0 && running[0]; i--) {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                final int finalI = i;
-                inviteCode.postValue(finalI + "s");
-                if (finalI == 0) {
-                    codeBtnEnable.postValue(true);
-                    inviteCode.postValue("获取验证码");
-                }
-            }
-        }).start();
     }
 
     public MutableLiveData<String> getPhone() {

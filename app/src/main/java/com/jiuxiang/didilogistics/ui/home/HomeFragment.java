@@ -32,12 +32,14 @@ public class HomeFragment extends Fragment {
         @Override
         public void handleMessage(Message msg) {
             String info = (String) msg.obj;
-            if (msg.what == 1) {
+            if (msg.what == 1 && binding != null) { //有来自order detail的消息，需判断是否为null
                 System.out.println("更新列表");
                 binding.getAdapter().notifyDataSetChanged();
                 Toast.makeText(getActivity(), info, Toast.LENGTH_SHORT).show();
                 binding.noDataTextview.setVisibility(homeViewModel.getData().size() == 0 ? View.VISIBLE : View.GONE);
                 binding.listview.setVisibility(homeViewModel.getData().size() == 0 ? View.GONE : View.VISIBLE);
+            } else if (msg.what == 2) {
+                homeViewModel.loadData();
             }
         }
     };

@@ -13,6 +13,9 @@ import com.jiuxiang.didilogistics.utils.App;
 import com.jiuxiang.didilogistics.utils.DataUtils;
 import com.jiuxiang.didilogistics.utils.HTTPResult;
 import com.jiuxiang.didilogistics.utils.HTTPUtils;
+import com.jiuxiang.didilogistics.utils.MD5Utils;
+
+import java.util.Objects;
 
 public class LoginViewModel extends ViewModel {
     private LoginActivity loginActivity;
@@ -27,7 +30,7 @@ public class LoginViewModel extends ViewModel {
     public void clickLogin() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("phone", getPhone().getValue());
-        jsonObject.put("password", getPassword().getValue());
+        jsonObject.put("password", MD5Utils.encrypt(Objects.requireNonNull(getPassword().getValue())));
         String data = jsonObject.toJSONString();
 
         HTTPUtils.post("/login", data, new HTTPResult() {

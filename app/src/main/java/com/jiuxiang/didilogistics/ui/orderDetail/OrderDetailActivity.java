@@ -26,8 +26,6 @@ public class OrderDetailActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-//            int arg1=msg.arg1;
-//            String info= (String) msg.obj;
             if (msg.what == 0)//支付成功
                 orderDetailViewModel.updateOrder(0);
             if (msg.what == 1) {

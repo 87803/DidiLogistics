@@ -64,8 +64,8 @@ public class OrderDetailViewModel extends ViewModel {
                     orderDetailActivity.runOnUiThread(() -> {
                         Toast.makeText(orderDetailActivity, "操作成功", Toast.LENGTH_SHORT).show();
                         loadData(orderDetail.getValue().getOrderID()); //重新加载数据
-                        Message message = new Message();
-                        message.what = 1;
+                        Message message = App.getHomeFragmentHandler().obtainMessage(2);
+                        message.obj = "更新数据成功";
                         App.getHomeFragmentHandler().sendMessage(message);//刷新首页数据
                     });
                 } else {
