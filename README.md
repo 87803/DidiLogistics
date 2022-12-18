@@ -1,5 +1,7 @@
 # DidiLogistics
 
+## [安卓端](https://github.com/87803/DidiLogistics) [服务器端](https://github.com/87803/DidiLogistics-serve)
+
 ## 本系统是一个滴滴物流的模拟系统：
 
 1. 编写 Android 客户端应用，具有货主、货车司机注册、登陆以及需求信息发布功能。
@@ -56,4 +58,8 @@
 
 #### 一些屏幕截图
 
-![](app/src/ScreenShot/driver/1-需求列表.png)
+![货主1](app/src/ScreenShot/user1.jpg)
+
+![货主2](app/src/ScreenShot/user2.jpg)
+
+![司机](app/src/ScreenShot/driver.jpg)
