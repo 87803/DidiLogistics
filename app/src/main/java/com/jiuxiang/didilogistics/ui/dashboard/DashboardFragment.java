@@ -152,7 +152,7 @@ public class DashboardFragment extends Fragment {
             fragmentDashboardBinding.help.setOnClickListener(v -> {
                 AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
                 builder.setTitle("提示");
-                builder.setMessage("系统只会显示货车长度和载重符合您要求的司机，如果没有符合要求的司机，您可以重新发布订单，系统会自动推送符合要求的司机。");
+                builder.setMessage("系统只会显示货车长度和载重符合您要求的司机，如果没有符合要求的司机，您可以重新发布订单，系统会自动推送符合要求的司机。\n若您为新注册用户，请先完善个人信息，以免影响后续使用。");
                 builder.setPositiveButton("我知道了", (dialog, which) -> dialog.dismiss());
                 builder.show();
             });

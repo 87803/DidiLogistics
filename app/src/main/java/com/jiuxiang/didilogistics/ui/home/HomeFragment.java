@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private HomeViewModel homeViewModel;
     @SuppressLint("HandlerLeak")
-    private Handler handler = new Handler() {
+    private final Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             String info = (String) msg.obj;
@@ -88,7 +88,7 @@ public class HomeFragment extends Fragment {
             binding.fab.setOnClickListener(v -> {
                 AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
                 builder.setTitle("提示");
-                builder.setMessage("系统只会推送货物长度和重量符合您货车长度和载重要求的订单，如果没有符合要求的订单，您可以尝试修改相关资料，然后刷新再试。");
+                builder.setMessage("系统只会推送货物长度和重量符合您货车长度和载重要求的订单，如果没有符合要求的订单，您可以尝试修改相关资料，然后刷新再试。\n若您为新注册用户，请先完善个人信息，以免影响后续使用。");
                 builder.setPositiveButton("我知道了", (dialog, which) -> dialog.dismiss());
                 builder.show();
             });

@@ -53,4 +53,5 @@ dependencies {
 
     api 'com.alipay.sdk:alipaysdk-android:+@aar'
     implementation 'com.github.crazyandcoder:citypicker:6.0.2'
+    implementation 'com.amap.api:location:latest.integration'
 }
