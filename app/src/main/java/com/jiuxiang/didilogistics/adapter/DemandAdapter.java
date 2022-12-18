@@ -1,4 +1,4 @@
-package com.jiuxiang.didilogistics.ui.home;
+package com.jiuxiang.didilogistics.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

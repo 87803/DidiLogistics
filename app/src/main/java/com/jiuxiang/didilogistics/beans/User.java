@@ -12,6 +12,7 @@ public class User {
     private boolean state;
     private String carLength;
     private String carWeight;
+    private String income;
 
     public User() {
     }
@@ -114,5 +115,13 @@ public class User {
                 ", type=" + type +
                 ", phone='" + phone + '\'' +
                 '}';
+    }
+
+    public String getIncome() {
+        return income;
+    }
+
+    public void setIncome(String income) {
+        this.income = income;
     }
 }

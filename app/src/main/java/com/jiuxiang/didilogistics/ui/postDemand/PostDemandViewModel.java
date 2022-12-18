@@ -26,9 +26,11 @@ public class PostDemandViewModel extends ViewModel {
     private MutableLiveData<String> startPlaceProvince;
     private MutableLiveData<String> startPlaceCity;
     private MutableLiveData<String> startPlaceDistrict;
+    private MutableLiveData<String> startPlaceDetail;
     private MutableLiveData<String> desPlaceProvince;
     private MutableLiveData<String> desPlaceCity;
     private MutableLiveData<String> desPlaceDistrict;
+    private MutableLiveData<String> desPlaceDetail;
 
     public PostDemandViewModel() {
         postDemand = new PostDemand();
@@ -38,6 +40,8 @@ public class PostDemandViewModel extends ViewModel {
         desPlaceProvince = new MutableLiveData<>("广东省");
         desPlaceCity = new MutableLiveData<>("广州市");
         desPlaceDistrict = new MutableLiveData<>("天河区");
+        startPlaceDetail = new MutableLiveData<>("");
+        desPlaceDetail = new MutableLiveData<>("");
     }
 
     public void onClickPostDemand() {
@@ -52,6 +56,8 @@ public class PostDemandViewModel extends ViewModel {
             postDemand.setDesPlaceProvince(desPlaceProvince.getValue());
             postDemand.setDesPlaceCity(desPlaceCity.getValue());
             postDemand.setDesPlaceDistrict(desPlaceDistrict.getValue());
+            postDemand.setStartPlaceDetail(startPlaceDetail.getValue());
+            postDemand.setDesPlaceDetail(desPlaceDetail.getValue());
         } catch (Exception e) {
             postDemandActivity.runOnUiThread(() -> Toast.makeText(postDemandActivity, "输入有误，请检查输入", Toast.LENGTH_LONG).show());
             return;
@@ -63,12 +69,13 @@ public class PostDemandViewModel extends ViewModel {
             public void onSuccess(JSONObject jsonObject) {
                 postDemandActivity.runOnUiThread(() -> {
                     if (jsonObject.getInteger("code") == 200) {
+                        System.out.println(postDemand);
                         Toast.makeText(postDemandActivity, "发布成功", Toast.LENGTH_LONG).show();
                         postDemandActivity.finish();
 
                         //通知主页刷新数据
                         Message message = Message.obtain();
-                        message.what = 1;
+                        message.what = 2;
                         App.getHomeFragmentHandler().sendMessage(message);
                     } else {
                         Toast.makeText(postDemandActivity, "发布失败，请检查输入，" + jsonObject.getString("msg"), Toast.LENGTH_LONG).show();
@@ -178,5 +185,21 @@ public class PostDemandViewModel extends ViewModel {
 
     public void setDesPlaceDistrict(MutableLiveData<String> desPlaceDistrict) {
         this.desPlaceDistrict = desPlaceDistrict;
+    }
+
+    public MutableLiveData<String> getStartPlaceDetail() {
+        return startPlaceDetail;
+    }
+
+    public void setStartPlaceDetail(MutableLiveData<String> startPlaceDetail) {
+        this.startPlaceDetail = startPlaceDetail;
+    }
+
+    public MutableLiveData<String> getDesPlaceDetail() {
+        return desPlaceDetail;
+    }
+
+    public void setDesPlaceDetail(MutableLiveData<String> desPlaceDetail) {
+        this.desPlaceDetail = desPlaceDetail;
     }
 }

@@ -11,17 +11,26 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.jiuxiang.didilogistics.R;
+import com.jiuxiang.didilogistics.adapter.DemandAdapter;
 import com.jiuxiang.didilogistics.databinding.FragmentHomeBinding;
 import com.jiuxiang.didilogistics.ui.orderDetail.OrderDetailActivity;
 import com.jiuxiang.didilogistics.ui.postDemand.PostDemandActivity;
 import com.jiuxiang.didilogistics.utils.App;
+import com.lljjcoder.Interface.OnCityItemClickListener;
+import com.lljjcoder.bean.CityBean;
+import com.lljjcoder.bean.DistrictBean;
+import com.lljjcoder.bean.ProvinceBean;
+import com.lljjcoder.citywheel.CityConfig;
+import com.lljjcoder.style.citylist.Toast.ToastUtils;
+import com.lljjcoder.style.citypickerview.CityPickerView;
 
-//import com.jiuxiang.didilogistics.databinding.FragmentHomeBinding;
+import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
@@ -38,7 +47,7 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getActivity(), info, Toast.LENGTH_SHORT).show();
                 binding.noDataTextview.setVisibility(homeViewModel.getData().size() == 0 ? View.VISIBLE : View.GONE);
                 binding.listview.setVisibility(homeViewModel.getData().size() == 0 ? View.GONE : View.VISIBLE);
-            } else if (msg.what == 2) {
+            } else if (msg.what == 2 && binding != null) {
                 homeViewModel.loadData();
             }
         }
@@ -66,22 +75,76 @@ public class HomeFragment extends Fragment {
         binding.listview.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
             intent.putExtra("orderID", homeViewModel.getData().get(position).getOrderID());
-            getActivity().startActivity(intent);
+            requireActivity().startActivity(intent);
             System.out.println("点击了" + position);
 
             //点击事件
         });
 
         if (App.getUser().isType()) {
-            binding.fab.setVisibility(View.GONE);
-        }
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+//            binding.fab.setVisibility(View.GONE);
+            //设置图片为@android:drawable/ic_menu_help
+            binding.fab.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_help));
+            binding.fab.setOnClickListener(v -> {
+                AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+                builder.setTitle("提示");
+                builder.setMessage("系统只会推送货物长度和重量符合您货车长度和载重要求的订单，如果没有符合要求的订单，您可以尝试修改相关资料，然后刷新再试。");
+                builder.setPositiveButton("我知道了", (dialog, which) -> dialog.dismiss());
+                builder.show();
+            });
+
+            CityPickerView mPicker = new CityPickerView();
+            //预先加载仿iOS滚轮实现的全部数据
+            mPicker.init(requireActivity());
+            //添加默认的配置，不需要自己定义，当然也可以自定义相关熟悉，详细属性请看demo
+            CityConfig cityConfig = new CityConfig.Builder().build();
+            mPicker.setConfig(cityConfig);
+
+            binding.startPlace.setOnClickListener((v) -> {
+//监听选择点击事件及返回结果
+                mPicker.setOnCityItemClickListener(new OnCityItemClickListener() {
+                    @Override
+                    public void onSelected(ProvinceBean province, CityBean city, DistrictBean district) {
+                        if (!Objects.equals(city.getName(), "市辖区") && !Objects.equals(city.getName(), "县")) {
+                            homeViewModel.getDriverStartPlaceCity().setValue(city.getName());
+                        } else
+                            homeViewModel.getDriverStartPlaceCity().setValue(province.getName());
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        ToastUtils.showLongToast(requireActivity(), "已取消");
+                    }
+                });
+                //显示
+                mPicker.showCityPicker();
+            });
+            binding.desPlace.setOnClickListener((v) -> {
+//监听选择点击事件及返回结果
+                mPicker.setOnCityItemClickListener(new OnCityItemClickListener() {
+                    @Override
+                    public void onSelected(ProvinceBean province, CityBean city, DistrictBean district) {
+                        if (!Objects.equals(city.getName(), "市辖区") && !Objects.equals(city.getName(), "县")) {
+                            homeViewModel.getDriverEndPlaceCity().setValue(city.getName());
+                        } else
+                            homeViewModel.getDriverEndPlaceCity().setValue(province.getName());
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        ToastUtils.showLongToast(requireActivity(), "已取消");
+                    }
+                });
+                //显示
+                mPicker.showCityPicker();
+            });
+        } else {
+            binding.llDriverLoc.setVisibility(View.GONE);
+            binding.fab.setOnClickListener(view -> {
                 Intent intent = new Intent(getActivity(), PostDemandActivity.class);
                 startActivity(intent);
-            }
-        });
+            });
+        }
 
         return root;
     }
@@ -89,6 +152,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+//        binding = null;
     }
 }

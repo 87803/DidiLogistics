@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.jiuxiang.didilogistics.BR;
 import com.jiuxiang.didilogistics.R;
+import com.jiuxiang.didilogistics.adapter.MessageAdapter;
 import com.jiuxiang.didilogistics.databinding.FragmentNotificationsBinding;
 import com.jiuxiang.didilogistics.ui.orderDetail.OrderDetailActivity;
 import com.jiuxiang.didilogistics.utils.App;

@@ -1,4 +1,4 @@
-package com.jiuxiang.didilogistics.ui.notifications;
+package com.jiuxiang.didilogistics.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,17 +12,16 @@ import androidx.databinding.ViewDataBinding;
 
 import com.jiuxiang.didilogistics.BR;
 import com.jiuxiang.didilogistics.R;
-import com.jiuxiang.didilogistics.beans.Demand;
-import com.jiuxiang.didilogistics.beans.Message;
+import com.jiuxiang.didilogistics.beans.Driver;
 
 import java.util.List;
 import java.util.Objects;
 
-public class MessageAdapter extends BaseAdapter {
+public class DriverAdapter extends BaseAdapter {
     Context context;
-    public List<Message> data;
+    public List<Driver> data;
 
-    public MessageAdapter(Context context, List<Message> objects) {
+    public DriverAdapter(Context context, List<Driver> objects) {
         super();
         this.context = context;
         data = objects;
@@ -45,8 +44,8 @@ public class MessageAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        @SuppressLint("ViewHolder") ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.message_item, parent, false);
-        binding.setVariable(BR.message, Objects.requireNonNull(data).get(position));
+        @SuppressLint("ViewHolder") ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.driver_item, parent, false);
+        binding.setVariable(BR.driverBean, Objects.requireNonNull(data).get(position));
         return binding.getRoot();
     }
 }

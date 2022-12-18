@@ -2,6 +2,7 @@ package com.jiuxiang.didilogistics.ui.home;
 
 import android.os.Message;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.alibaba.fastjson.JSONArray;
@@ -17,12 +18,17 @@ import java.util.List;
 public class HomeViewModel extends ViewModel {
     private final List<Demand> data = new ArrayList<>();
 
+    private MutableLiveData<String> driverStartPlaceCity;
+    private MutableLiveData<String> driverEndPlaceCity;
+
     public HomeViewModel() {
+        driverEndPlaceCity = new MutableLiveData<>();
+        driverStartPlaceCity = new MutableLiveData<>();
         loadData();
     }
 
     public void loadData() {
-        HTTPUtils.get("/auth/demand", new HTTPResult() {
+        HTTPUtils.get("/auth/demand?start=" + driverStartPlaceCity.getValue() + "&end=" + driverEndPlaceCity.getValue(), new HTTPResult() {
             @Override
             public void onSuccess(JSONObject result) {
                 System.out.println(result);
@@ -43,7 +49,29 @@ public class HomeViewModel extends ViewModel {
         });
     }
 
+    public void resetData() {
+        driverEndPlaceCity.setValue(null);
+        driverStartPlaceCity.setValue(null);
+        loadData();
+    }
+
     public List<Demand> getData() {
         return data;
+    }
+
+    public MutableLiveData<String> getDriverStartPlaceCity() {
+        return driverStartPlaceCity;
+    }
+
+    public void setDriverStartPlaceCity(MutableLiveData<String> driverStartPlaceCity) {
+        this.driverStartPlaceCity = driverStartPlaceCity;
+    }
+
+    public MutableLiveData<String> getDriverEndPlaceCity() {
+        return driverEndPlaceCity;
+    }
+
+    public void setDriverEndPlaceCity(MutableLiveData<String> driverEndPlaceCity) {
+        this.driverEndPlaceCity = driverEndPlaceCity;
     }
 }

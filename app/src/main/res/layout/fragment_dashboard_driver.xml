@@ -11,7 +11,7 @@
 
         <variable
             name="adapter"
-            type="com.jiuxiang.didilogistics.ui.home.DemandAdapter" />
+            type="com.jiuxiang.didilogistics.adapter.DemandAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

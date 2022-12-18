@@ -6,6 +6,8 @@ public class PostDemand extends Demand {
     private String startPlaceDistrict;
     private String desPlaceProvince;
     private String desPlaceDistrict;
+    private String startPlaceDetail;
+    private String desPlaceDetail;
 
     public PostDemand() {
     }
@@ -50,4 +52,32 @@ public class PostDemand extends Demand {
         this.desPlaceDistrict = desPlaceDistrict;
     }
 
+    public String getStartPlaceDetail() {
+        return startPlaceDetail;
+    }
+
+    public void setStartPlaceDetail(String startPlaceDetail) {
+        this.startPlaceDetail = startPlaceDetail;
+    }
+
+    public String getDesPlaceDetail() {
+        return desPlaceDetail;
+    }
+
+    public void setDesPlaceDetail(String desPlaceDetail) {
+        this.desPlaceDetail = desPlaceDetail;
+    }
+
+    @Override
+    public String toString() {
+        return "PostDemand{" +
+                "length=" + length +
+                ", startPlaceProvince='" + startPlaceProvince + '\'' +
+                ", startPlaceDistrict='" + startPlaceDistrict + '\'' +
+                ", desPlaceProvince='" + desPlaceProvince + '\'' +
+                ", desPlaceDistrict='" + desPlaceDistrict + '\'' +
+                ", startPlaceDetail='" + startPlaceDetail + '\'' +
+                ", desPlaceDetail='" + desPlaceDetail + '\'' +
+                '}';
+    }
 }

@@ -19,15 +19,24 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.jiuxiang.didilogistics.BR;
 import com.jiuxiang.didilogistics.R;
+import com.jiuxiang.didilogistics.adapter.DemandAdapter;
+import com.jiuxiang.didilogistics.adapter.DriverAdapter;
 import com.jiuxiang.didilogistics.databinding.FragmentDashboardBinding;
 import com.jiuxiang.didilogistics.databinding.FragmentDashboardDriverBinding;
-import com.jiuxiang.didilogistics.ui.home.DemandAdapter;
 import com.jiuxiang.didilogistics.ui.home.HomeViewModel;
 import com.jiuxiang.didilogistics.ui.orderDetail.OrderDetailActivity;
 import com.jiuxiang.didilogistics.utils.App;
+import com.lljjcoder.Interface.OnCityItemClickListener;
+import com.lljjcoder.bean.CityBean;
+import com.lljjcoder.bean.DistrictBean;
+import com.lljjcoder.bean.ProvinceBean;
+import com.lljjcoder.citywheel.CityConfig;
+import com.lljjcoder.style.citylist.Toast.ToastUtils;
+import com.lljjcoder.style.citypickerview.CityPickerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DashboardFragment extends Fragment {
     private FragmentDashboardBinding fragmentDashboardBinding;
@@ -98,7 +107,6 @@ public class DashboardFragment extends Fragment {
 //            binding = FragmentDashboardBinding.inflate(inflater, container, false);
 //            View root = binding.getRoot();
 
-
 //return inflater.inflate(R.layout.fragment_home, container, false);
 
             fragmentDashboardBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false);
@@ -118,6 +126,8 @@ public class DashboardFragment extends Fragment {
             //设置适配器方式和以往不同
             fragmentDashboardBinding.setAdapter(new DriverAdapter(getActivity(), dashboardViewModel.getData()));//
 //        binding.listview.setAdapter(binding.getAdp());
+
+            fragmentDashboardBinding.noDataTextview.setText("暂无符合要求的司机");
             //通过binding来设置点击长按事件
             fragmentDashboardBinding.listview.setOnItemClickListener((parent, view, position, id) -> {
                 List<String> list = new ArrayList<>();
@@ -139,7 +149,59 @@ public class DashboardFragment extends Fragment {
                 builder.show();
                 //点击事件
             });
+            fragmentDashboardBinding.help.setOnClickListener(v -> {
+                AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+                builder.setTitle("提示");
+                builder.setMessage("系统只会显示货车长度和载重符合您要求的司机，如果没有符合要求的司机，您可以重新发布订单，系统会自动推送符合要求的司机。");
+                builder.setPositiveButton("我知道了", (dialog, which) -> dialog.dismiss());
+                builder.show();
+            });
 
+            CityPickerView mPicker = new CityPickerView();
+            //预先加载仿iOS滚轮实现的全部数据
+            mPicker.init(requireActivity());
+            //添加默认的配置，不需要自己定义，当然也可以自定义相关熟悉，详细属性请看demo
+            CityConfig cityConfig = new CityConfig.Builder().build();
+            mPicker.setConfig(cityConfig);
+
+            fragmentDashboardBinding.startPlace.setOnClickListener((v) -> {
+//监听选择点击事件及返回结果
+                mPicker.setOnCityItemClickListener(new OnCityItemClickListener() {
+                    @Override
+                    public void onSelected(ProvinceBean province, CityBean city, DistrictBean district) {
+                        if (!Objects.equals(city.getName(), "市辖区") && !Objects.equals(city.getName(), "县")) {
+                            dashboardViewModel.getDriverStartPlaceCity().setValue(city.getName());
+                        } else
+                            dashboardViewModel.getDriverStartPlaceCity().setValue(province.getName());
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        ToastUtils.showLongToast(requireActivity(), "已取消");
+                    }
+                });
+                //显示
+                mPicker.showCityPicker();
+            });
+            fragmentDashboardBinding.desPlace.setOnClickListener((v) -> {
+//监听选择点击事件及返回结果
+                mPicker.setOnCityItemClickListener(new OnCityItemClickListener() {
+                    @Override
+                    public void onSelected(ProvinceBean province, CityBean city, DistrictBean district) {
+                        if (!Objects.equals(city.getName(), "市辖区") && !Objects.equals(city.getName(), "县")) {
+                            dashboardViewModel.getDriverEndPlaceCity().setValue(city.getName());
+                        } else
+                            dashboardViewModel.getDriverEndPlaceCity().setValue(province.getName());
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        ToastUtils.showLongToast(requireActivity(), "已取消");
+                    }
+                });
+                //显示
+                mPicker.showCityPicker();
+            });
             return root;
         }
 

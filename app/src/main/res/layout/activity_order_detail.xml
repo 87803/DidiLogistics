@@ -146,6 +146,24 @@
             <TableRow>
 
                 <TextView
+                    android:text="详细地址:"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="10dp" />
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:text="@{orderDetailViewModel.orderDetail.startPlaceDetail}"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:layout_width="0dp"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
                     android:text="收货地:"
                     android:textSize="16sp"
                     android:layout_marginLeft="10dp" />
@@ -155,6 +173,24 @@
                     android:text="@{orderDetailViewModel.orderDetail.desPlaceProvince +' ' + orderDetailViewModel.orderDetail.desPlaceCity +' '+ orderDetailViewModel.orderDetail.desPlaceDistrict}"
                     android:textColor="#000000"
                     android:textSize="18sp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:text="详细地址:"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="10dp" />
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:text="@{orderDetailViewModel.orderDetail.desPlaceDetail}"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     android:layout_width="0dp"
                     android:layout_weight="1" />
             </TableRow>

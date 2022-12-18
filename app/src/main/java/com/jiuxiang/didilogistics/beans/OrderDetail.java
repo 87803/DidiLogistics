@@ -23,6 +23,8 @@ public class OrderDetail {
     private String startPlaceDistrict;
     private String desPlaceProvince;
     private String desPlaceDistrict;
+    private String startPlaceDetail;
+    private String desPlaceDetail;
 
     public OrderDetail() {
     }
@@ -185,5 +187,21 @@ public class OrderDetail {
 
     public void setDesPlaceDistrict(String desPlaceDistrict) {
         this.desPlaceDistrict = desPlaceDistrict;
+    }
+
+    public String getStartPlaceDetail() {
+        return startPlaceDetail;
+    }
+
+    public void setStartPlaceDetail(String startPlaceDetail) {
+        this.startPlaceDetail = startPlaceDetail;
+    }
+
+    public String getDesPlaceDetail() {
+        return desPlaceDetail;
+    }
+
+    public void setDesPlaceDetail(String desPlaceDetail) {
+        this.desPlaceDetail = desPlaceDetail;
     }
 }

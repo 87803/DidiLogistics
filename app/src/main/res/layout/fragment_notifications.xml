@@ -11,7 +11,7 @@
 
         <variable
             name="adapter"
-            type="com.jiuxiang.didilogistics.ui.notifications.MessageAdapter" />
+            type="com.jiuxiang.didilogistics.adapter.MessageAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

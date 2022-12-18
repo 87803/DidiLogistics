@@ -43,266 +43,342 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <TableLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <TableRow
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+                android:layout_height="match_parent">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <TableRow
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="出发地："
-                    android:textSize="20sp" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    app:cardCornerRadius="25dp">
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
 
                     <TextView
-                        android:id="@+id/start_place"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:background="@color/grey"
-                        android:ems="10"
-                        android:gravity="center_vertical"
-                        android:hint="@string/please_select"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="20dp"
-                        android:text="@{postDemandViewModel.startPlaceProvince + ' ' + postDemandViewModel.startPlaceCity + ' '+postDemandViewModel.startPlaceDistrict}"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-                </androidx.cardview.widget.CardView>
-            </TableRow>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="出发地："
+                        android:textSize="20sp" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="25dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/start_place"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@color/grey"
+                            android:ems="10"
+                            android:gravity="center_vertical"
+                            android:hint="@string/please_select"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:text="@{postDemandViewModel.startPlaceProvince + ' ' + postDemandViewModel.startPlaceCity + ' '+postDemandViewModel.startPlaceDistrict}"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+                    </androidx.cardview.widget.CardView>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="目的地："
-                    android:textSize="20sp" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    app:cardCornerRadius="25dp">
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
 
                     <TextView
-                        android:id="@+id/des_place"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:background="@color/grey"
-                        android:ems="10"
-                        android:gravity="center_vertical"
-                        android:hint="@string/please_select"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="20dp"
-                        android:text="@{postDemandViewModel.desPlaceProvince + ' ' + postDemandViewModel.desPlaceCity + ' '+postDemandViewModel.desPlaceDistrict}"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-                </androidx.cardview.widget.CardView>
-            </TableRow>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="详细地址："
+                        android:textSize="20sp" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="25dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@color/grey"
+                            android:ems="10"
+                            android:hint="请输入"
+                            android:inputType="text"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:text="@={postDemandViewModel.startPlaceDetail}"
+                            android:textColor="#000000" />
+                    </androidx.cardview.widget.CardView>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="货物长度(m):"
-                    android:textSize="20sp" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    app:cardCornerRadius="25dp">
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:background="@color/grey"
-                        android:ems="10"
-                        android:hint="1.8"
-                        android:inputType="numberDecimal"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="20dp"
-                        android:text="@={postDemandViewModel.length}"
-                        android:textColor="#000000" />
-                </androidx.cardview.widget.CardView>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="货物重量(kg):"
-                    android:textSize="20sp" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    app:cardCornerRadius="25dp">
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:background="@color/grey"
-                        android:ems="10"
-                        android:hint="200"
-                        android:inputType="numberDecimal"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="20dp"
-                        android:text="@={postDemandViewModel.weight}"
-                        android:textColor="#000000" />
-                </androidx.cardview.widget.CardView>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="货物描述:"
-                    android:textSize="20sp" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    app:cardCornerRadius="25dp">
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:background="@color/grey"
-                        android:ems="10"
-                        android:hint="沙发（描述30字以内）"
-                        android:inputType="text"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="20dp"
-                        android:text="@={postDemandViewModel.postDemand.description}"
-                        android:textColor="#000000" />
-                </androidx.cardview.widget.CardView>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="意向运费(元):"
-                    android:textSize="20sp" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    app:cardCornerRadius="25dp">
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:background="@color/grey"
-                        android:ems="10"
-                        android:hint="1000"
-                        android:inputType="number"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="20dp"
-                        android:text="@={postDemandViewModel.price}"
-                        android:textColor="#000000" />
-                </androidx.cardview.widget.CardView>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="期望发货日期："
-                    android:textSize="20sp" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    app:cardCornerRadius="25dp">
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
 
                     <TextView
-                        android:id="@+id/date"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:background="@color/grey"
-                        android:ems="10"
-                        android:gravity="center_vertical"
-                        android:hint="@string/please_select"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="20dp"
-                        android:text="@={postDemandViewModel.deliverTime}"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-                </androidx.cardview.widget.CardView>
-            </TableRow>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="目的地："
+                        android:textSize="20sp" />
 
-        </TableLayout>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="25dp">
+
+                        <TextView
+                            android:id="@+id/des_place"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@color/grey"
+                            android:ems="10"
+                            android:gravity="center_vertical"
+                            android:hint="@string/please_select"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:text="@{postDemandViewModel.desPlaceProvince + ' ' + postDemandViewModel.desPlaceCity + ' '+postDemandViewModel.desPlaceDistrict}"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+                    </androidx.cardview.widget.CardView>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="详细地址："
+                        android:textSize="20sp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="25dp">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@color/grey"
+                            android:ems="10"
+                            android:hint="请输入"
+                            android:inputType="text"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:text="@={postDemandViewModel.desPlaceDetail}"
+                            android:textColor="#000000" />
+                    </androidx.cardview.widget.CardView>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="货物长度(m):"
+                        android:textSize="20sp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="25dp">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@color/grey"
+                            android:ems="10"
+                            android:hint="1.8"
+                            android:inputType="numberDecimal"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:text="@={postDemandViewModel.length}"
+                            android:textColor="#000000" />
+                    </androidx.cardview.widget.CardView>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="货物重量(kg):"
+                        android:textSize="20sp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="25dp">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@color/grey"
+                            android:ems="10"
+                            android:hint="200"
+                            android:inputType="numberDecimal"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:text="@={postDemandViewModel.weight}"
+                            android:textColor="#000000" />
+                    </androidx.cardview.widget.CardView>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="货物描述:"
+                        android:textSize="20sp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="25dp">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@color/grey"
+                            android:ems="10"
+                            android:hint="沙发（描述30字以内）"
+                            android:inputType="text"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:text="@={postDemandViewModel.postDemand.description}"
+                            android:textColor="#000000" />
+                    </androidx.cardview.widget.CardView>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="意向运费(元):"
+                        android:textSize="20sp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="25dp">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@color/grey"
+                            android:ems="10"
+                            android:hint="1000"
+                            android:inputType="number"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:text="@={postDemandViewModel.price}"
+                            android:textColor="#000000" />
+                    </androidx.cardview.widget.CardView>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="期望发货日期："
+                        android:textSize="20sp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="25dp">
+
+                        <TextView
+                            android:id="@+id/date"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@color/grey"
+                            android:ems="10"
+                            android:gravity="center_vertical"
+                            android:hint="@string/please_select"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:text="@={postDemandViewModel.deliverTime}"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+                    </androidx.cardview.widget.CardView>
+                </TableRow>
+
+            </TableLayout>
+        </ScrollView>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="bottom">
 
             <androidx.cardview.widget.CardView
