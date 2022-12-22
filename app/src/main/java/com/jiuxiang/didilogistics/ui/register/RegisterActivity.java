@@ -10,20 +10,17 @@ import com.jiuxiang.didilogistics.R;
 import com.jiuxiang.didilogistics.databinding.ActivityRegisterBinding;
 
 public class RegisterActivity extends AppCompatActivity {
-    private ActivityRegisterBinding binding;//private ViewDataBinding binding;
-    private RegisterViewModel registerViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_register);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_register);
-        registerViewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
+        RegisterViewModel registerViewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
         registerViewModel.setRegisterActivity(this);
+
+        ActivityRegisterBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_register);
         binding.setVariable(com.jiuxiang.didilogistics.BR.registerViewModel, registerViewModel);
         binding.setLifecycleOwner(this);
-
 
         binding.tvLogin.setOnClickListener(v -> {
             finish();

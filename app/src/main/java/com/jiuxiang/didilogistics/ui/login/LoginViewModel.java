@@ -1,5 +1,6 @@
 package com.jiuxiang.didilogistics.ui.login;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.jiuxiang.didilogistics.utils.MD5Utils;
 import java.util.Objects;
 
 public class LoginViewModel extends ViewModel {
+    @SuppressLint("StaticFieldLeak")
     private LoginActivity loginActivity;
     private MutableLiveData<String> phone;
     private MutableLiveData<String> password;
@@ -77,10 +79,6 @@ public class LoginViewModel extends ViewModel {
                 });
             }
         });
-    }
-
-    public LoginActivity getLoginActivity() {
-        return loginActivity;
     }
 
     public void setLoginActivity(LoginActivity loginActivity) {

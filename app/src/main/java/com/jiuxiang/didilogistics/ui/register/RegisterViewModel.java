@@ -33,8 +33,6 @@ public class RegisterViewModel extends ViewModel {
         inviteCode = new MutableLiveData<>("获取验证码");
         codeBtnEnable = new MutableLiveData<>(true);
         roleSelect = new MutableLiveData<>(R.id.radioButton);
-//        codeBtnEnable.setValue(true);
-//        inviteCode.setValue("获取验证码");
     }
 
 

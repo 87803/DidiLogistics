@@ -22,15 +22,13 @@ import com.jiuxiang.didilogistics.databinding.FragmentNotificationsBinding;
 import com.jiuxiang.didilogistics.ui.orderDetail.OrderDetailActivity;
 import com.jiuxiang.didilogistics.utils.App;
 
-//import com.jiuxiang.didilogistics.databinding.FragmentNotificationsBinding;
-
 public class NotificationsFragment extends Fragment {
 
     private FragmentNotificationsBinding binding;
     private NotificationsViewModel notificationsViewModel;
 
     @SuppressLint("HandlerLeak")
-    private Handler handler = new Handler() {
+    private final Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             String info = (String) msg.obj;
@@ -46,6 +44,7 @@ public class NotificationsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         App.setNotificationFragmentHandler(handler);
+
         notificationsViewModel = new ViewModelProvider(this).get(NotificationsViewModel.class);
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_notifications, container, false);
         View root = binding.getRoot();
@@ -56,7 +55,6 @@ public class NotificationsFragment extends Fragment {
         binding.listview.setVisibility(notificationsViewModel.getData().size() == 0 ? View.GONE : View.VISIBLE);
 
         binding.setAdapter(new MessageAdapter(getActivity(), notificationsViewModel.getData()));
-        //通过binding来设置点击长按事件
         binding.listview.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
             intent.putExtra("orderID", notificationsViewModel.getData().get(position).getOrderID());

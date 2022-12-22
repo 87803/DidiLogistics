@@ -21,23 +21,14 @@ import com.jiuxiang.didilogistics.utils.App;
 
 public class UserInfoFragment extends Fragment {
 
-    private FragmentUserInfoBinding binding;
-    private UserInfoViewModel userInfoViewModel;
-
-
-    public static UserInfoFragment newInstance() {
-        return new UserInfoFragment();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        userInfoViewModel = new ViewModelProvider(this).get(UserInfoViewModel.class);
+        UserInfoViewModel userInfoViewModel = new ViewModelProvider(this).get(UserInfoViewModel.class);
         UserInfoViewModel.setMainActivity((MainActivity) getActivity());
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_info, container, false);
+        FragmentUserInfoBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_info, container, false);
         View root = binding.getRoot();
-
         binding.setVariable(BR.userViewModel, userInfoViewModel);
         binding.setLifecycleOwner(getViewLifecycleOwner());
 

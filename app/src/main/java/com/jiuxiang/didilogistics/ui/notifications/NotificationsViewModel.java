@@ -41,7 +41,6 @@ public class NotificationsViewModel extends ViewModel {
         });
     }
 
-
     public List<Message> getData() {
         return data;
     }

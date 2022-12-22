@@ -59,30 +59,23 @@ public class HomeFragment extends Fragment {
 
         App.setHomeFragmentHandler(handler);
 
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         View root = binding.getRoot();
-
         binding.setVariable(com.jiuxiang.didilogistics.BR.homeViewModel, homeViewModel);
         binding.setLifecycleOwner(getViewLifecycleOwner());
 
         binding.noDataTextview.setVisibility(homeViewModel.getData().size() == 0 ? View.VISIBLE : View.GONE);
         binding.listview.setVisibility(homeViewModel.getData().size() == 0 ? View.GONE : View.VISIBLE);
-        //设置适配器方式和以往不同
-        binding.setAdapter(new DemandAdapter(getActivity(), homeViewModel.getData()));//
-//        binding.listview.setAdapter(binding.getAdp());
-        //通过binding来设置点击长按事件
+        //设置适配器
+        binding.setAdapter(new DemandAdapter(getActivity(), homeViewModel.getData()));
         binding.listview.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
             intent.putExtra("orderID", homeViewModel.getData().get(position).getOrderID());
             requireActivity().startActivity(intent);
             System.out.println("点击了" + position);
-
-            //点击事件
         });
 
         if (App.getUser().isType()) {
-//            binding.fab.setVisibility(View.GONE);
             //设置图片为@android:drawable/ic_menu_help
             binding.fab.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_help));
             binding.fab.setOnClickListener(v -> {
@@ -101,7 +94,6 @@ public class HomeFragment extends Fragment {
             mPicker.setConfig(cityConfig);
 
             binding.startPlace.setOnClickListener((v) -> {
-//监听选择点击事件及返回结果
                 mPicker.setOnCityItemClickListener(new OnCityItemClickListener() {
                     @Override
                     public void onSelected(ProvinceBean province, CityBean city, DistrictBean district) {
@@ -116,11 +108,9 @@ public class HomeFragment extends Fragment {
                         ToastUtils.showLongToast(requireActivity(), "已取消");
                     }
                 });
-                //显示
-                mPicker.showCityPicker();
+                mPicker.showCityPicker(); //显示
             });
             binding.desPlace.setOnClickListener((v) -> {
-//监听选择点击事件及返回结果
                 mPicker.setOnCityItemClickListener(new OnCityItemClickListener() {
                     @Override
                     public void onSelected(ProvinceBean province, CityBean city, DistrictBean district) {
@@ -135,8 +125,7 @@ public class HomeFragment extends Fragment {
                         ToastUtils.showLongToast(requireActivity(), "已取消");
                     }
                 });
-                //显示
-                mPicker.showCityPicker();
+                mPicker.showCityPicker();//显示
             });
         } else {
             binding.llDriverLoc.setVisibility(View.GONE);

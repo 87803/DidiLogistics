@@ -11,19 +11,16 @@ import androidx.navigation.ui.NavigationUI;
 import com.jiuxiang.didilogistics.R;
 import com.jiuxiang.didilogistics.databinding.ActivityMainBinding;
 import com.jiuxiang.didilogistics.utils.App;
-//import com.jiuxiang.didilogistics.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
-    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-//        setContentView(R.layout.activity_main);
+        // setContentView(R.layout.activity_main);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -32,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
         if (App.getUser().isType()) { //司机
             binding.navView.getMenu().getItem(1).setTitle("订单");
         }

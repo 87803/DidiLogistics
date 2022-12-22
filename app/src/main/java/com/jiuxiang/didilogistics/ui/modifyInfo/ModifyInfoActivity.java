@@ -55,7 +55,6 @@ public class ModifyInfoActivity extends AppCompatActivity {
         mPicker.setConfig(cityConfig);
 
         binding.startPlace.setOnClickListener((v) -> {
-//监听选择点击事件及返回结果
             mPicker.setOnCityItemClickListener(new OnCityItemClickListener() {
                 @Override
                 public void onSelected(ProvinceBean province, CityBean city, DistrictBean district) {
@@ -70,11 +69,9 @@ public class ModifyInfoActivity extends AppCompatActivity {
                     ToastUtils.showLongToast(ModifyInfoActivity.this, "已取消");
                 }
             });
-            //显示
             mPicker.showCityPicker();
         });
         binding.desPlace.setOnClickListener((v) -> {
-//监听选择点击事件及返回结果
             mPicker.setOnCityItemClickListener(new OnCityItemClickListener() {
                 @Override
                 public void onSelected(ProvinceBean province, CityBean city, DistrictBean district) {
@@ -89,7 +86,6 @@ public class ModifyInfoActivity extends AppCompatActivity {
                     ToastUtils.showLongToast(ModifyInfoActivity.this, "已取消");
                 }
             });
-            //显示
             mPicker.showCityPicker();
         });
     }

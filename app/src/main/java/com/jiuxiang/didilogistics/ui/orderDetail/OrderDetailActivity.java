@@ -99,13 +99,14 @@ public class OrderDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         App.setOrderDetailHandler(handler);
-//        setContentView(R.layout.activity_order_detail);
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_order_detail);
+        binding.setVariable(BR.orderDetailViewModel, orderDetailViewModel);
+        binding.setLifecycleOwner(this);
+
         orderDetailViewModel = new ViewModelProvider(this).get(OrderDetailViewModel.class);
         orderDetailViewModel.setOrderDetailActivity(this);
         orderDetailViewModel.loadData(getIntent().getStringExtra("orderID"));
-        binding.setVariable(BR.orderDetailViewModel, orderDetailViewModel);
-        binding.setLifecycleOwner(this);
 
         binding.goDes.setOnClickListener(v -> {
             OrderDetail orderDetail = orderDetailViewModel.getOrderDetail().getValue();
@@ -208,18 +209,15 @@ public class OrderDetailActivity extends AppCompatActivity {
                     .show();
         });
     }
-
-
+    
     private void goAmap(String location) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.addCategory(Intent.CATEGORY_DEFAULT);
-
-//将功能Scheme以URI的方式传入data
+        //将功能Scheme以URI的方式传入data
         Uri uri = Uri.parse("androidamap://poi?sourceApplication=softname&keywords=" + location + "&dev=0");
         intent.setData(uri);
-
-//启动该页面即可
+        //启动该页面即可
         startActivity(intent);
     }
 }
