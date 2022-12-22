@@ -6,6 +6,29 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
+    <!--用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--    &lt;!&ndash;用于获取运营商信息，用于支持提供运营商信息相关的接口&ndash;&gt;-->
+    <!--    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>-->
+    <!--    &lt;!&ndash;用于访问wifi网络信息，wifi信息会用于进行网络定位&ndash;&gt;-->
+    <!--    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>-->
+    <!--用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!--用于访问网络，网络定位需要上网-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--用于读取手机当前的状态-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--用于写入缓存数据到扩展存储卡-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--用于申请调用A-GPS模块-->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!--如果设置了target >= 28 如果需要启动后台定位则必须声明这个权限-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!--如果您的应用需要后台定位权限，且有可能运行在Android Q设备上,并且设置了target>28，必须增加这个权限声明-->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
     <queries>
         <package android:name="com.eg.android.AlipayGphone" /> <!-- 支付宝 -->
         <package android:name="hk.alipay.wallet" /> <!-- AlipayHK -->
@@ -30,6 +53,13 @@
         android:theme="@style/Theme.DidiLogistics"
         tools:targetApi="31"
         tools:replace="android:theme">
+        <service android:name="com.amap.api.location.APSService" />
+
+        <!--            //开发者申请的key-->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="" />
+
         <activity
             android:name=".ui.modifyInfo.ModifyInfoActivity"
             android:exported="false"
@@ -56,8 +86,7 @@
         </activity>
         <activity
             android:name=".ui.main.MainActivity"
-            android:exported="true"
-            android:label="@string/title_activity_main2">
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -79,8 +108,7 @@
         </activity>
         <activity
             android:name=".ui.login.LoginActivity"
-            android:exported="true"
-            android:label="@string/app_name">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -90,8 +118,7 @@
         <activity
             android:name=".alipay.PayDemoActivity"
             android:exported="true"
-            android:icon="@drawable/msp_icon"
-            android:label="@string/app_name">
+            android:icon="@drawable/msp_icon">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
