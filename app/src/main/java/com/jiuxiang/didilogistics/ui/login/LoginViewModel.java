@@ -3,6 +3,7 @@ package com.jiuxiang.didilogistics.ui.login;
 import android.content.Intent;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -46,8 +47,21 @@ public class LoginViewModel extends ViewModel {
                         DataUtils.saveTokenAndUserInfo(loginActivity, token, user);//保存token
                         DataUtils.rememberPhonePwd(loginActivity, getPhone().getValue(), getPassword().getValue());//保存手机号和密码
                         Intent intent = new Intent(loginActivity, MainActivity.class);
-                        loginActivity.startActivity(intent);
-                        loginActivity.finish();
+
+                        if (App.getUser().getName() == null || App.getUser().getName().equals("")) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(loginActivity);
+                            builder.setTitle("提示");
+                            builder.setMessage("检测到您的个人信息不完整，若您为新注册用户，请先完善个人信息，以免影响后续使用。");
+                            builder.setPositiveButton("我知道了", (dialog, which) -> dialog.dismiss());
+                            builder.setOnDismissListener(dialog -> {
+                                loginActivity.startActivity(intent);
+                                loginActivity.finish();
+                            });
+                            builder.show();
+                        } else {
+                            loginActivity.startActivity(intent);
+                            loginActivity.finish();
+                        }
                     });
                 } else {
                     loginActivity.runOnUiThread(() -> {

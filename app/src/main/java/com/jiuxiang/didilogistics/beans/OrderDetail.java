@@ -25,6 +25,8 @@ public class OrderDetail {
     private String desPlaceDistrict;
     private String startPlaceDetail;
     private String desPlaceDetail;
+    private String distance;
+    private String recommendPrice;
 
     public OrderDetail() {
     }
@@ -203,5 +205,21 @@ public class OrderDetail {
 
     public void setDesPlaceDetail(String desPlaceDetail) {
         this.desPlaceDetail = desPlaceDetail;
+    }
+
+    public String getDistance() {
+        return distance + "公里";
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
+    }
+
+    public String getRecommendPrice() {
+        return recommendPrice + "元";
+    }
+
+    public void setRecommendPrice(String recommendPrice) {
+        this.recommendPrice = recommendPrice;
     }
 }

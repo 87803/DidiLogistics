@@ -45,7 +45,7 @@ public class DashboardFragment extends Fragment {
     private DashboardViewModel dashboardViewModel;
 
     @SuppressLint("HandlerLeak")
-    private Handler handler = new Handler() {
+    private final Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -74,8 +74,6 @@ public class DashboardFragment extends Fragment {
 
         if (App.getUser().isType()) { //司机端界面，显示司机订单
             dashboardDriverViewModel = new ViewModelProvider(this).get(DashboardDriverViewModel.class);
-
-//return inflater.inflate(R.layout.fragment_home, container, false);
 
             fragmentDashboardDriverBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard_driver, container, false);
             View root = fragmentDashboardDriverBinding.getRoot();

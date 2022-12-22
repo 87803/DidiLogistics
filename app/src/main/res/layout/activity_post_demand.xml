@@ -118,6 +118,7 @@
                         app:cardCornerRadius="25dp">
 
                         <EditText
+                            android:id="@+id/start_detail_place"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:background="@color/grey"
@@ -190,6 +191,7 @@
                         app:cardCornerRadius="25dp">
 
                         <EditText
+                            android:id="@+id/des_detail_place"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:background="@color/grey"
@@ -225,6 +227,7 @@
                         app:cardCornerRadius="25dp">
 
                         <EditText
+                            android:id="@+id/et_length"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:background="@color/grey"
@@ -319,6 +322,85 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:text="估计距离(km):"
+                        android:textSize="20sp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="25dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@color/grey"
+                            android:ems="10"
+                            android:gravity="center_vertical"
+                            android:hint="系统计算的起终点距离"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:text="@{postDemandViewModel.distance}"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+                    </androidx.cardview.widget.CardView>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="建议最低运费:"
+                        android:textSize="20sp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="25dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@color/grey"
+                            android:ems="10"
+                            android:gravity="center_vertical"
+                            android:hint="系统计算的最低运费"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:text="@{postDemandViewModel.lowestPrice}"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+                    </androidx.cardview.widget.CardView>
+
+                    <ImageView
+                        android:id="@+id/iv_price_help"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/help"
+                        android:layout_gravity="center_vertical" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="意向运费(元):"
                         android:textSize="20sp" />
 
@@ -334,7 +416,7 @@
                             android:layout_height="50dp"
                             android:background="@color/grey"
                             android:ems="10"
-                            android:hint="1000"
+                            android:hint="不得低于最低运费"
                             android:inputType="number"
                             android:paddingStart="20dp"
                             android:paddingEnd="20dp"

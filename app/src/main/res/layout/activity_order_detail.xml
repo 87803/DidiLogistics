@@ -19,7 +19,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="85dp"
             android:orientation="horizontal"
             android:background="#1a7cff"
             android:gravity="center">
@@ -34,6 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginRight="50dp"
                 android:layout_marginTop="4dp"
                 android:text="订单详情"
                 android:textColor="#FFFFFF"
@@ -43,7 +44,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:orientation="horizontal"
             android:background="@drawable/icon_order2">
 
@@ -61,7 +62,8 @@
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:background="@color/white"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
@@ -159,6 +161,35 @@
                     android:ellipsize="end"
                     android:layout_width="0dp"
                     android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/iv_start_help"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/help"
+                    android:layout_gravity="center_vertical"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/go_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/location"
+                        android:layout_gravity="center_vertical" />
+
+                    <TextView
+                        android:text="@string/go_des"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
             </TableRow>
 
             <TableRow>
@@ -187,6 +218,55 @@
                 <TextView
                     android:layout_marginLeft="20dp"
                     android:text="@{orderDetailViewModel.orderDetail.desPlaceDetail}"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:layout_width="0dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/iv_des_help"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/help"
+                    android:layout_gravity="center_vertical"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/go_des"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_location"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/location"
+                        android:layout_gravity="center_vertical" />
+
+                    <TextView
+                        android:text="@string/go_des"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:text="估计距离:"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="10dp" />
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:text="@{orderDetailViewModel.orderDetail.distance}"
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:maxLines="2"
@@ -284,6 +364,31 @@
             <TableRow>
 
                 <TextView
+                    android:text="建议最低价格:"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="10dp" />
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:text="@{orderDetailViewModel.orderDetail.recommendPrice}"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:layout_width="0dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/iv_price_help"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/help"
+                    android:layout_gravity="center_vertical" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
                     android:text="运费:"
                     android:textSize="16sp"
                     android:layout_marginLeft="10dp" />
@@ -301,13 +406,39 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="bottom">
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:id="@+id/cv_btn2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                app:cardCornerRadius="30dp">
+
+                <Button
+                    android:id="@+id/btn2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#1a7cff"
+                    app:backgroundTint="@null"
+                    android:text="修改价格" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_btn1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
                 app:cardCornerRadius="30dp">
 
                 <Button

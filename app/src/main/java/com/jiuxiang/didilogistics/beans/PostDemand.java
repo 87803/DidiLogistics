@@ -8,6 +8,8 @@ public class PostDemand extends Demand {
     private String desPlaceDistrict;
     private String startPlaceDetail;
     private String desPlaceDetail;
+    private String distance;
+    private String recommendPrice;
 
     public PostDemand() {
     }
@@ -79,5 +81,21 @@ public class PostDemand extends Demand {
                 ", startPlaceDetail='" + startPlaceDetail + '\'' +
                 ", desPlaceDetail='" + desPlaceDetail + '\'' +
                 '}';
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
+    }
+
+    public String getRecommendPrice() {
+        return recommendPrice;
+    }
+
+    public void setRecommendPrice(String recommendPrice) {
+        this.recommendPrice = recommendPrice;
     }
 }

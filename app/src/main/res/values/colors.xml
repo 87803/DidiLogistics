@@ -11,4 +11,5 @@
     <color name="blue_bg_button">#1CAEFA</color>
     <color name="grey_order_cancel">#757575</color>
     <color name="green_success">#59B82A</color>
+    <color name="blue_order_accept">#1788C3</color>
 </resources>

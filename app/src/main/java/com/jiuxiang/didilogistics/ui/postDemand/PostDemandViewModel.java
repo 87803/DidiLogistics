@@ -31,6 +31,8 @@ public class PostDemandViewModel extends ViewModel {
     private MutableLiveData<String> desPlaceCity;
     private MutableLiveData<String> desPlaceDistrict;
     private MutableLiveData<String> desPlaceDetail;
+    private MutableLiveData<String> distance;
+    private MutableLiveData<String> lowestPrice;
 
     public PostDemandViewModel() {
         postDemand = new PostDemand();
@@ -42,6 +44,9 @@ public class PostDemandViewModel extends ViewModel {
         desPlaceDistrict = new MutableLiveData<>("天河区");
         startPlaceDetail = new MutableLiveData<>("");
         desPlaceDetail = new MutableLiveData<>("");
+        distance = new MutableLiveData<>("");
+        lowestPrice = new MutableLiveData<>("");
+        length = "";
     }
 
     public void onClickPostDemand() {
@@ -58,8 +63,16 @@ public class PostDemandViewModel extends ViewModel {
             postDemand.setDesPlaceDistrict(desPlaceDistrict.getValue());
             postDemand.setStartPlaceDetail(startPlaceDetail.getValue());
             postDemand.setDesPlaceDetail(desPlaceDetail.getValue());
+            postDemand.setDistance(distance.getValue());
+            postDemand.setRecommendPrice(lowestPrice.getValue());
+            double cur_lowestPrice = Double.parseDouble(lowestPrice.getValue());
+            double cur_price = Double.parseDouble(price);
+            if (cur_price < cur_lowestPrice) {
+                Toast.makeText(postDemandActivity, "价格不能低于最低价格", Toast.LENGTH_SHORT).show();
+                return;
+            }
         } catch (Exception e) {
-            postDemandActivity.runOnUiThread(() -> Toast.makeText(postDemandActivity, "输入有误，请检查输入", Toast.LENGTH_LONG).show());
+            postDemandActivity.runOnUiThread(() -> Toast.makeText(postDemandActivity, "输入有误，请检查输入，或计算未完成，请等待", Toast.LENGTH_LONG).show());
             return;
         }
 
@@ -88,6 +101,14 @@ public class PostDemandViewModel extends ViewModel {
                 postDemandActivity.runOnUiThread(() -> Toast.makeText(postDemandActivity, "提交失败，请重试，" + error, Toast.LENGTH_LONG).show());
             }
         });
+    }
+
+    public String getStartPlace() {
+        return startPlaceProvince.getValue() + "省" + startPlaceCity.getValue() + "市" + startPlaceDistrict.getValue() + "区" + startPlaceDetail.getValue();
+    }
+
+    public String getDesPlace() {
+        return desPlaceProvince.getValue() + "省" + desPlaceCity.getValue() + "市" + desPlaceDistrict.getValue() + "区" + desPlaceDetail.getValue();
     }
 
     public PostDemandActivity getPostDemandActivity() {
@@ -201,5 +222,21 @@ public class PostDemandViewModel extends ViewModel {
 
     public void setDesPlaceDetail(MutableLiveData<String> desPlaceDetail) {
         this.desPlaceDetail = desPlaceDetail;
+    }
+
+    public MutableLiveData<String> getDistance() {
+        return distance;
+    }
+
+    public void setDistance(MutableLiveData<String> distance) {
+        this.distance = distance;
+    }
+
+    public MutableLiveData<String> getLowestPrice() {
+        return lowestPrice;
+    }
+
+    public void setLowestPrice(MutableLiveData<String> lowestPrice) {
+        this.lowestPrice = lowestPrice;
     }
 }

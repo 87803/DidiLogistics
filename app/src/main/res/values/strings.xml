@@ -81,4 +81,5 @@
     <string name="driver_user">滴滴物流司机用户</string>
     <string name="unset">未设置</string>
     <string name="new_user_tip">提示：新用户请尽快完善信息，以免影响后续使用</string>
+    <string name="go_des">去这里</string>
 </resources>

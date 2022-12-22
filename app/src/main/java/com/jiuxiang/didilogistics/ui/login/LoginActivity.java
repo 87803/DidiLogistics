@@ -49,10 +49,8 @@ public class LoginActivity extends AppCompatActivity {
         });
         quickLogin();
         JSONObject userData = DataUtils.readPhonePwd(this);
-        if (userData != null) {
-            loginViewModel.getPhone().setValue(userData.getString("phone"));
-            loginViewModel.getPassword().setValue(userData.getString("password"));
-        }
+        loginViewModel.getPhone().setValue(userData.getString("phone"));
+        loginViewModel.getPassword().setValue(userData.getString("password"));
 
 
     }

@@ -54,6 +54,9 @@ public class DemandAdapter extends BaseAdapter {
         } else if (data.get(position).getState().equals("已完成")) {
             TextView textView = binding.state;
             textView.setTextColor(context.getResources().getColor(R.color.green_success));
+        } else if (!data.get(position).getState().equals("待接单")) {
+            TextView textView = binding.state;
+            textView.setTextColor(context.getResources().getColor(R.color.blue_order_accept));
         }
 
         return binding.getRoot();

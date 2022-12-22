@@ -52,11 +52,14 @@ public class OrderDetailViewModel extends ViewModel {
         });
     }
 
-    public void updateOrder(int type) {
+    public void updateOrder(int type, String... params) {
         //0:支付 1:取消
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("orderID", orderDetail.getValue().getOrderID());
         jsonObject.put("type", type);
+        if (type == 6) {
+            jsonObject.put("price", params[0]);
+        }
         HTTPUtils.post("/auth/order", jsonObject.toJSONString(), new HTTPResult() {
             @Override
             public void onSuccess(JSONObject result) {
