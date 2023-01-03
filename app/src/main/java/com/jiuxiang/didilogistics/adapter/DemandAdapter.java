@@ -17,6 +17,7 @@ import com.jiuxiang.didilogistics.databinding.DemandItemBinding;
 import java.util.List;
 import java.util.Objects;
 
+//订单/需求列表适配器
 public class DemandAdapter extends BaseAdapter {
     Context context;
     public List<Demand> data;
@@ -48,6 +49,7 @@ public class DemandAdapter extends BaseAdapter {
 //        @SuppressLint("ViewHolder") ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.demand_item, parent, false);
         binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.demand_item, parent, false);
         binding.setVariable(BR.demandBean, Objects.requireNonNull(data).get(position));
+        //根据不同订单状态设置不同的颜色
         if (data.get(position).getState().equals("已取消")) {
             TextView textView = binding.state;
             textView.setTextColor(context.getResources().getColor(R.color.grey_order_cancel));

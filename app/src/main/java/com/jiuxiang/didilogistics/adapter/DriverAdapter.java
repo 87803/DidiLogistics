@@ -17,6 +17,7 @@ import com.jiuxiang.didilogistics.beans.Driver;
 import java.util.List;
 import java.util.Objects;
 
+//司机列表适配器
 public class DriverAdapter extends BaseAdapter {
     Context context;
     public List<Driver> data;

@@ -41,6 +41,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+//该界面用于发布需求
 public class PostDemandActivity extends AppCompatActivity {
     private PostDemandViewModel postDemandViewModel;
     private ActivityPostDemandBinding binding;
@@ -62,8 +63,10 @@ public class PostDemandActivity extends AppCompatActivity {
         binding.setVariable(BR.postDemandViewModel, postDemandViewModel);
         binding.setLifecycleOwner(this);
 
+        //初始化距离搜索对象
         try {
             distanceSearch = new DistanceSearch(this);
+            //距离搜索结果监听
             distanceSearch.setDistanceSearchListener(new DistanceSearch.OnDistanceSearchListener() {
                 @Override
                 public void onDistanceSearched(DistanceResult distanceResult, int i) {
@@ -99,6 +102,7 @@ public class PostDemandActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //监听定位结果
         mlocationClient.setLocationListener(amapLocation -> {
             if (amapLocation != null) {
                 if (amapLocation.getErrorCode() == 0) {
@@ -145,6 +149,7 @@ public class PostDemandActivity extends AppCompatActivity {
             mlocationClient.startLocation();
         });
 
+        //初始化地址选择器
         //预先加载仿iOS滚轮实现的全部数据
         mPicker.init(this);
         //添加默认的配置，不需要自己定义，当然也可以自定义相关熟悉，详细属性请看demo
@@ -190,8 +195,9 @@ public class PostDemandActivity extends AppCompatActivity {
             mPicker.showCityPicker();
         });
 
+        //监听数据变化
         View.OnFocusChangeListener onFocusChangeListener = (view, b) -> {
-            if (!b) {
+            if (!b) {   //失去焦点
                 if (!postDemandViewModel.getDesPlaceDetail().getValue().equals("") &&
                         !postDemandViewModel.getStartPlaceDetail().getValue().equals("") &&
                         !postDemandViewModel.getLength().equals(""))
@@ -221,6 +227,7 @@ public class PostDemandActivity extends AppCompatActivity {
         });
     }
 
+    //获取距离
     private void getDistance(String start, String des) {
         postDemandViewModel.getDistance().setValue("计算中...");
         postDemandViewModel.getLowestPrice().setValue("计算中...");

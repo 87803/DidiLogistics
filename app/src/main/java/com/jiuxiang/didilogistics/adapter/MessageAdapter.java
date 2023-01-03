@@ -17,6 +17,7 @@ import com.jiuxiang.didilogistics.beans.Message;
 import java.util.List;
 import java.util.Objects;
 
+//消息列表适配器
 public class MessageAdapter extends BaseAdapter {
     Context context;
     public List<Message> data;
