@@ -1,5 +1,6 @@
 package com.jiuxiang.didilogistics.beans;
 
+//发布需求时用户填写的信息
 public class PostDemand extends Demand {
     private Double length;
     private String startPlaceProvince;

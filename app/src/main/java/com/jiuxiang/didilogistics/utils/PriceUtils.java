@@ -2,6 +2,7 @@ package com.jiuxiang.didilogistics.utils;
 
 import com.jiuxiang.didilogistics.beans.PriceItem;
 
+//不同货车类型的价格
 public class PriceUtils {
     public static final PriceItem[] ITEM = {
             new PriceItem(3, 65, 4, 5),

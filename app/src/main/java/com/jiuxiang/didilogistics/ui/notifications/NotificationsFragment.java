@@ -22,6 +22,7 @@ import com.jiuxiang.didilogistics.databinding.FragmentNotificationsBinding;
 import com.jiuxiang.didilogistics.ui.orderDetail.OrderDetailActivity;
 import com.jiuxiang.didilogistics.utils.App;
 
+//消息界面，用于显示消息列表
 public class NotificationsFragment extends Fragment {
 
     private FragmentNotificationsBinding binding;

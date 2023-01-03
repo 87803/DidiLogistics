@@ -15,6 +15,7 @@ import com.jiuxiang.didilogistics.utils.HTTPUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+//首页对应的ViewModel，获取首页的订单列表
 public class HomeViewModel extends ViewModel {
     private final List<Demand> data = new ArrayList<>();
 
@@ -27,6 +28,7 @@ public class HomeViewModel extends ViewModel {
         loadData();
     }
 
+    //获取首页的订单列表
     public void loadData() {
         HTTPUtils.get("/auth/demand?start=" + driverStartPlaceCity.getValue() + "&end=" + driverEndPlaceCity.getValue(), new HTTPResult() {
             @Override
@@ -49,6 +51,7 @@ public class HomeViewModel extends ViewModel {
         });
     }
 
+    //取消筛选
     public void resetData() {
         driverEndPlaceCity.setValue(null);
         driverStartPlaceCity.setValue(null);

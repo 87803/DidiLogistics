@@ -1,5 +1,6 @@
 package com.jiuxiang.didilogistics.beans;
 
+//每种车型对应的起步价，里程价
 public class PriceItem {
     public double length;//车辆长度，米
     public double flagFallPrice;//起步价，元

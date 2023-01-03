@@ -19,6 +19,7 @@ import com.jiuxiang.didilogistics.ui.main.MainActivity;
 import com.jiuxiang.didilogistics.ui.modifyInfo.ModifyInfoActivity;
 import com.jiuxiang.didilogistics.utils.App;
 
+//用户信息界面
 public class UserInfoFragment extends Fragment {
 
     @Override
@@ -32,6 +33,7 @@ public class UserInfoFragment extends Fragment {
         binding.setVariable(BR.userViewModel, userInfoViewModel);
         binding.setLifecycleOwner(getViewLifecycleOwner());
 
+        //根据用户类型显示不同的字段，用户类型为货主，隐藏司机相关字段
         if (!App.getUser().isType())
             binding.driverTable.setVisibility(View.GONE);
 

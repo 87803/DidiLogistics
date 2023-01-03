@@ -1,5 +1,6 @@
 package com.jiuxiang.didilogistics.beans;
 
+//订单的详细信息
 public class OrderDetail {
     private String ownerID;//    private int ownerID;
     private String driverID;//    private int driverID;

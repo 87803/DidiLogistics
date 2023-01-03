@@ -3,6 +3,7 @@ package com.jiuxiang.didilogistics.utils;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+//MD5工具类，用于密码MD5加密
 public class MD5Utils {
     public static String encrypt(String raw) {
         String md5Str = raw;

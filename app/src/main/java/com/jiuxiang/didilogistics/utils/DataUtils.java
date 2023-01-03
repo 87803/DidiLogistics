@@ -8,6 +8,7 @@ import com.jiuxiang.didilogistics.beans.User;
 import com.jiuxiang.didilogistics.ui.login.LoginActivity;
 import com.jiuxiang.didilogistics.ui.main.MainActivity;
 
+//保存/读取用户信息和token
 public class DataUtils {
     public static void saveTokenAndUserInfo(LoginActivity loginActivity, String token, User userinfo) {
         App.setToken(token);

@@ -4,8 +4,8 @@ import android.os.Handler;
 
 import com.jiuxiang.didilogistics.beans.User;
 
-;
 
+//保存用户信息，token，以及对应的Handler
 public class App {
     static private User user;
     static private String token = "";

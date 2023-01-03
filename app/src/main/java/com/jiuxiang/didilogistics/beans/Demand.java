@@ -1,9 +1,6 @@
 package com.jiuxiang.didilogistics.beans;
 
-import androidx.lifecycle.MutableLiveData;
-
-import com.jiuxiang.didilogistics.ui.orderDetail.OrderDetailActivity;
-
+//每条需求的基本信息，用于显示在列表中
 public class Demand {
     private String orderID;
     private String orderTime;

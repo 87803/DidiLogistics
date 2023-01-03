@@ -35,7 +35,7 @@
                         android:layout_height="50dp"
                         android:foreground="@drawable/driver"
                         app:cardCornerRadius="50dp"
-                        android:layout_marginRight="10dp"></androidx.cardview.widget.CardView>
+                        android:layout_marginRight="10dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -113,7 +113,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@{driverBean.carLength}"
+                            android:text="@{driverBean.carLength + '米'}"
                             android:textColor="#000000"
                             android:hint="@string/unset" />
 
@@ -127,7 +127,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@{driverBean.carWeight}"
+                            android:text="@{driverBean.carWeight + '千'+'克'}"
                             android:textColor="#000000"
                             android:hint="@string/unset" />
                     </TableRow>
@@ -165,7 +165,7 @@
                         android:paddingBottom="5dp"
                         android:background="#f68033"
                         android:text="向司机推送订单"
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:textColor="@color/white" />
                 </androidx.cardview.widget.CardView>
 

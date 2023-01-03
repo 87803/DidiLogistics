@@ -19,6 +19,7 @@ import com.jiuxiang.didilogistics.utils.DataUtils;
 import com.jiuxiang.didilogistics.utils.HTTPResult;
 import com.jiuxiang.didilogistics.utils.HTTPUtils;
 
+//用户信息界面对应的ViewModel，获取用户信息
 public class UserInfoViewModel extends ViewModel {
     @SuppressLint("StaticFieldLeak")
     private static MainActivity mainActivity;
@@ -42,6 +43,7 @@ public class UserInfoViewModel extends ViewModel {
         App.setUserInfoFragmentHandler(handler);
     }
 
+    //用户退出登录，清除本地数据
     public void logout() {
         App.setUser(null);
         App.setToken("");

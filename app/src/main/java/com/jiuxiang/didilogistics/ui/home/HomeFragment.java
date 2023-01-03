@@ -32,6 +32,8 @@ import com.lljjcoder.style.citypickerview.CityPickerView;
 
 import java.util.Objects;
 
+//该界面用于货主端显示自己的订单列表
+//司机端显示货主发布的需求列表
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
@@ -86,6 +88,7 @@ public class HomeFragment extends Fragment {
                 builder.show();
             });
 
+            //初始化城市选择器
             CityPickerView mPicker = new CityPickerView();
             //预先加载仿iOS滚轮实现的全部数据
             mPicker.init(requireActivity());
@@ -93,6 +96,7 @@ public class HomeFragment extends Fragment {
             CityConfig cityConfig = new CityConfig.Builder().build();
             mPicker.setConfig(cityConfig);
 
+            //设置起点和终点城市文本框的点击事件，弹出城市选择器
             binding.startPlace.setOnClickListener((v) -> {
                 mPicker.setOnCityItemClickListener(new OnCityItemClickListener() {
                     @Override
@@ -127,7 +131,7 @@ public class HomeFragment extends Fragment {
                 });
                 mPicker.showCityPicker();//显示
             });
-        } else {
+        } else {//货主，不显示筛选
             binding.llDriverLoc.setVisibility(View.GONE);
             binding.fab.setOnClickListener(view -> {
                 Intent intent = new Intent(getActivity(), PostDemandActivity.class);

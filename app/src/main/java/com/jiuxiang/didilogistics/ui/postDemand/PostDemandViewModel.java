@@ -13,6 +13,7 @@ import com.jiuxiang.didilogistics.utils.App;
 import com.jiuxiang.didilogistics.utils.HTTPResult;
 import com.jiuxiang.didilogistics.utils.HTTPUtils;
 
+//发布需求界面对应的ViewModel，将需求数据发送到服务器
 public class PostDemandViewModel extends ViewModel {
     @SuppressLint("StaticFieldLeak")
     private PostDemandActivity postDemandActivity;
@@ -36,6 +37,7 @@ public class PostDemandViewModel extends ViewModel {
 
     public PostDemandViewModel() {
         postDemand = new PostDemand();
+        //设置地址的默认显示值
         startPlaceProvince = new MutableLiveData<>("北京市");
         startPlaceCity = new MutableLiveData<>("北京市");
         startPlaceDistrict = new MutableLiveData<>("海淀区");

@@ -12,6 +12,7 @@ import com.jiuxiang.didilogistics.R;
 import com.jiuxiang.didilogistics.databinding.ActivityMainBinding;
 import com.jiuxiang.didilogistics.utils.App;
 
+//主界面的Activity
 public class MainActivity extends AppCompatActivity {
 
     @Override

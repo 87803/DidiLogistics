@@ -1,5 +1,6 @@
 package com.jiuxiang.didilogistics.beans;
 
+//司机的个人信息
 public class Driver {
     private String name;
     private String userID;

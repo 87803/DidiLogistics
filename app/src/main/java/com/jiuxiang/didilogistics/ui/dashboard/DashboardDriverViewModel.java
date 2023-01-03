@@ -14,6 +14,8 @@ import com.jiuxiang.didilogistics.utils.HTTPUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+//司机端界面对应的ViewModel
+//获取司机的订单列表
 public class DashboardDriverViewModel extends ViewModel {
     private final List<Demand> data = new ArrayList<>();
 
@@ -21,6 +23,7 @@ public class DashboardDriverViewModel extends ViewModel {
         loadData();
     }
 
+    //获取司机的订单列表
     public void loadData() {
         HTTPUtils.get("/auth/demand?order=true", new HTTPResult() {
             @Override

@@ -24,6 +24,7 @@ import com.jiuxiang.didilogistics.databinding.ActivityOrderDetailBinding;
 import com.jiuxiang.didilogistics.utils.App;
 import com.jiuxiang.didilogistics.utils.PriceUtils;
 
+//订单详情界面，用于显示订单详情
 public class OrderDetailActivity extends AppCompatActivity {
     private OrderDetailViewModel orderDetailViewModel;
     public ActivityOrderDetailBinding binding;
@@ -35,10 +36,12 @@ public class OrderDetailActivity extends AppCompatActivity {
             if (msg.what == 0)//支付成功
                 orderDetailViewModel.updateOrder(0);
             if (msg.what == 1) {
+                //判断是否有司机接单，如果有则显示司机信息，否则不显示
                 if (orderDetailViewModel.getOrderDetail().getValue().getDriverName() == null) {
                     binding.driverPhone.setVisibility(View.GONE);
                     binding.driverName.setVisibility(View.GONE);
                 }
+                //根据用户类型和订单状态显示不同的按钮
                 if (!App.getUser().isType()) {
                     switch (orderDetailViewModel.getOrderDetail().getValue().getState()) {
                         case "待接单":
@@ -100,13 +103,13 @@ public class OrderDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         App.setOrderDetailHandler(handler);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_order_detail);
-        binding.setVariable(BR.orderDetailViewModel, orderDetailViewModel);
-        binding.setLifecycleOwner(this);
-
         orderDetailViewModel = new ViewModelProvider(this).get(OrderDetailViewModel.class);
         orderDetailViewModel.setOrderDetailActivity(this);
         orderDetailViewModel.loadData(getIntent().getStringExtra("orderID"));
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_order_detail);
+        binding.setVariable(BR.orderDetailViewModel, orderDetailViewModel);
+        binding.setLifecycleOwner(this);
 
         binding.goDes.setOnClickListener(v -> {
             OrderDetail orderDetail = orderDetailViewModel.getOrderDetail().getValue();
@@ -209,7 +212,8 @@ public class OrderDetailActivity extends AppCompatActivity {
                     .show();
         });
     }
-    
+
+    //跳转到高德地图
     private void goAmap(String location) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);

@@ -12,7 +12,7 @@ import com.jiuxiang.didilogistics.utils.HTTPResult;
 import com.jiuxiang.didilogistics.utils.HTTPUtils;
 import com.jiuxiang.didilogistics.utils.MD5Utils;
 
-
+//注册界面对应的ViewModel，将注册信息发送到服务器
 public class RegisterViewModel extends ViewModel {
     @SuppressLint("StaticFieldLeak")
     private RegisterActivity registerActivity;
@@ -42,6 +42,7 @@ public class RegisterViewModel extends ViewModel {
         jsonObject.put("password", getPassword().getValue());
         jsonObject.put("type", getRoleSelect().getValue() == R.id.radioButton ? 0 : 1);
         jsonObject.put("code", getCode().getValue());
+        //密码简单验证
         if (jsonObject.getString("password").length() < 8 || jsonObject.getString("password").length() > 16) {
             Toast.makeText(registerActivity, "密码必须在8-16位之间", Toast.LENGTH_SHORT).show();
             return;
@@ -50,6 +51,7 @@ public class RegisterViewModel extends ViewModel {
             Toast.makeText(registerActivity, "密码不一致，请重新输入", Toast.LENGTH_LONG).show();
             return;
         }
+        //密码MD5加密
         jsonObject.put("password", MD5Utils.encrypt(jsonObject.getString("password")));
         String data = jsonObject.toJSONString();
         HTTPUtils.post("/register", data, new HTTPResult() {
@@ -77,6 +79,7 @@ public class RegisterViewModel extends ViewModel {
 
     }
 
+    //点击获取验证码按钮，更新验证码按钮的状态，文本为倒计时，不可点击
     public void onClickCode() {
         codeBtnEnable.setValue(false);
         JSONObject jsonObject = new JSONObject();

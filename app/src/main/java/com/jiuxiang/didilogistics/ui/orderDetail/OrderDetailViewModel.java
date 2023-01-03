@@ -13,6 +13,7 @@ import com.jiuxiang.didilogistics.utils.App;
 import com.jiuxiang.didilogistics.utils.HTTPResult;
 import com.jiuxiang.didilogistics.utils.HTTPUtils;
 
+//订单详情界面对应的ViewModel，获取订单详情
 public class OrderDetailViewModel extends ViewModel {
     @SuppressLint("StaticFieldLeak")
     private OrderDetailActivity orderDetailActivity;
@@ -29,7 +30,7 @@ public class OrderDetailViewModel extends ViewModel {
             public void onSuccess(JSONObject result) {
                 if (result.getInteger("code") == 200) {
                     OrderDetail orderDetailData = result.getObject("data", OrderDetail.class);
-                    System.out.println(orderDetailData.getDeliverTime());
+                    //System.out.println(orderDetailData.getDeliverTime());
                     orderDetailActivity.runOnUiThread(() -> {
                         orderDetail.setValue(orderDetailData);
                     });
@@ -52,6 +53,7 @@ public class OrderDetailViewModel extends ViewModel {
         });
     }
 
+    //对订单进行操作，更新订单状态
     public void updateOrder(int type, String... params) {
         //0:支付 1:取消
         JSONObject jsonObject = new JSONObject();

@@ -12,6 +12,7 @@ import com.jiuxiang.didilogistics.utils.HTTPUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+//消息界面对应的ViewModel，获取消息列表
 public class NotificationsViewModel extends ViewModel {
     private final List<Message> data = new ArrayList<>();
 

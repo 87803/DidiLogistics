@@ -38,6 +38,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+//该界面用于司机端显示司机的订单列表，点击订单查看详情
+//货主端显示在线司机列表，点击可向司机推送订单
 public class DashboardFragment extends Fragment {
     private FragmentDashboardBinding fragmentDashboardBinding;
     private FragmentDashboardDriverBinding fragmentDashboardDriverBinding;

@@ -26,7 +26,7 @@ import com.lljjcoder.style.citypickerview.CityPickerView;
 
 import java.util.Objects;
 
-
+//修改资料界面，用于修改用户的资料
 public class ModifyInfoActivity extends AppCompatActivity {
     ActivityModifyInfoBinding binding;
     CityPickerView mPicker = new CityPickerView();
@@ -38,6 +38,7 @@ public class ModifyInfoActivity extends AppCompatActivity {
         binding.setLifecycleOwner(this);
         User user = App.getUser();
         binding.nameEt.setText(user.getName());
+        //根据用户类型显示可修改的字段
         if (!user.isType())
             binding.driverTable.setVisibility(View.GONE);
         else {
@@ -48,6 +49,7 @@ public class ModifyInfoActivity extends AppCompatActivity {
             binding.carWeightEt.setText(user.getCarWeight());
         }
 
+        //初始化城市选择器
         //预先加载仿iOS滚轮实现的全部数据
         mPicker.init(this);
         //添加默认的配置，不需要自己定义，当然也可以自定义相关熟悉，详细属性请看demo
@@ -90,6 +92,7 @@ public class ModifyInfoActivity extends AppCompatActivity {
         });
     }
 
+    //点击修改资料按钮，向服务器发送修改资料请求
     public void modifyInfo(View v) {
         String name = binding.nameEt.getText().toString();
         String oldPassword = binding.oldPwdEt.getText().toString();
@@ -101,6 +104,7 @@ public class ModifyInfoActivity extends AppCompatActivity {
         String carLength = binding.carLengthEt.getText().toString();
         String carWeight = binding.carWeightEt.getText().toString();
         System.out.println(binding.oldPwdEt.getText().toString());
+        //判断输入是否合法
         if (!oldPassword.equals("") || !newPwd.equals("") || !newPwdConfirm.equals("")) {
             if (newPwd.length() < 8 || newPwd.length() > 16) {
                 Toast.makeText(this, "密码必须在8-16位之间", Toast.LENGTH_SHORT).show();

@@ -19,6 +19,7 @@ import com.jiuxiang.didilogistics.utils.MD5Utils;
 
 import java.util.Objects;
 
+//登录界面对应的ViewModel
 public class LoginViewModel extends ViewModel {
     @SuppressLint("StaticFieldLeak")
     private LoginActivity loginActivity;
@@ -30,7 +31,9 @@ public class LoginViewModel extends ViewModel {
         password = new MutableLiveData<>("");
     }
 
+    //登录按钮点击事件
     public void clickLogin() {
+        //请求体，密码MD5加密
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("phone", getPhone().getValue());
         jsonObject.put("password", MD5Utils.encrypt(Objects.requireNonNull(getPassword().getValue())));

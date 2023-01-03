@@ -1,5 +1,6 @@
 package com.jiuxiang.didilogistics.beans;
 
+//用户基本信息
 public class User {
     private int userID;
     private String nickname;

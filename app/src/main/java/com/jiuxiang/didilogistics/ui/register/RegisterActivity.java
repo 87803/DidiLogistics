@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.jiuxiang.didilogistics.R;
 import com.jiuxiang.didilogistics.databinding.ActivityRegisterBinding;
 
+//注册界面的Activity
 public class RegisterActivity extends AppCompatActivity {
 
     @Override

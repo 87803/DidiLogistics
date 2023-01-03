@@ -15,6 +15,8 @@ import com.jiuxiang.didilogistics.utils.HTTPUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+//货主端界面对应的ViewModel
+//获取在线司机列表，向司机推送订单
 public class DashboardViewModel extends ViewModel {
     private final List<Driver> data = new ArrayList<>();
     private MutableLiveData<String> driverStartPlaceCity;
@@ -26,6 +28,7 @@ public class DashboardViewModel extends ViewModel {
         loadData();
     }
 
+    //获取在线司机列表
     public void loadData() {
         HTTPUtils.get("/auth/driver?start=" + driverStartPlaceCity.getValue() + "&end=" + driverEndPlaceCity.getValue(), new HTTPResult() {
             @Override
@@ -48,12 +51,14 @@ public class DashboardViewModel extends ViewModel {
         });
     }
 
+    //取消筛选
     public void resetData() {
         driverEndPlaceCity.setValue(null);
         driverStartPlaceCity.setValue(null);
         loadData();
     }
 
+    //向司机推送订单
     public void pushOrder(String orderID, int position) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("driverID", getData().get(position).getUserID());

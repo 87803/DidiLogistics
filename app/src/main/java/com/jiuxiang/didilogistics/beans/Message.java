@@ -1,5 +1,6 @@
 package com.jiuxiang.didilogistics.beans;
 
+//每一条消息的基本信息，用于显示在列表中
 public class Message {
     String orderID;
     String UserID;

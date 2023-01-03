@@ -2,7 +2,6 @@ package com.jiuxiang.didilogistics.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -17,8 +16,8 @@ import com.jiuxiang.didilogistics.ui.register.RegisterActivity;
 import com.jiuxiang.didilogistics.utils.App;
 import com.jiuxiang.didilogistics.utils.DataUtils;
 
+//该界面用于用户登录
 public class LoginActivity extends AppCompatActivity {
-    private TextView tvRegister;
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
 
@@ -33,7 +32,8 @@ public class LoginActivity extends AppCompatActivity {
         binding.setVariable(BR.loginViewModel, loginViewModel);
         binding.setLifecycleOwner(this);
 
-        quickLogin();
+        quickLogin();//本地存在用户数据的情况下快速登录
+        //读取本地的账号密码，如果存在则自动填充
         JSONObject userData = DataUtils.readPhonePwd(this);
         loginViewModel.getPhone().setValue(userData.getString("phone"));
         loginViewModel.getPassword().setValue(userData.getString("password"));
