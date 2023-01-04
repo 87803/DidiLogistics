@@ -11,7 +11,7 @@
 5. 客户端供需匹配成功与否显示功能。
 6. 在线支付功能。
 
-## 本系统安卓端使用MVVM + View Model + Data binding，服务器端使用Servlet+Tomcat，数据库使用MySQL，客户端和服务器端通过HTTP请求json数据。
+## 本系统安卓端使用MVVM + View Model + Data binding，服务器端使用Servlet+Tomcat，数据库使用MySQL、Redis，客户端和服务器端通过HTTP请求json数据。
 
 ### 以下是本系统实现的主要功能：
 
