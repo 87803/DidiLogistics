@@ -171,7 +171,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                             "车型：" + PriceUtils.ITEM[2].length + "米货车，起步价：" + PriceUtils.ITEM[2].flagFallPrice + "元(" + PriceUtils.ITEM[2].flagFallPrice_distance + "公里)，超出后每公里：" + PriceUtils.ITEM[2].price + "元\n" +
                             "车型：" + PriceUtils.ITEM[3].length + "米货车，起步价：" + PriceUtils.ITEM[3].flagFallPrice + "元(" + PriceUtils.ITEM[3].flagFallPrice_distance + "公里)，超出后每公里：" + PriceUtils.ITEM[3].price + "元\n" +
                             "车型：" + PriceUtils.ITEM[4].length + "米货车，起步价：" + PriceUtils.ITEM[4].flagFallPrice + "元(" + PriceUtils.ITEM[4].flagFallPrice_distance + "公里)，超出后每公里：" + PriceUtils.ITEM[4].price + "元\n" +
-                            "--------------------------------------\n您可以在车主接单前，与车主协商最终的价格，并在平台上修改价格，接单后，不支持修改价格，" +
+                            "--------------------------------------\n您可以在司机接单前，与货主/司机协商最终的价格，由货主修改价格，接单后，不支持修改价格，" +
                             "为保证订单安全，请勿在平台外交易，如有疑问，请联系客服。")
                     .setPositiveButton("我知道了", null)
                     .show();
