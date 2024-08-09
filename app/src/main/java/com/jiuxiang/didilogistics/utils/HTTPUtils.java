@@ -24,7 +24,7 @@ public class HTTPUtils {
             .readTimeout(30, TimeUnit.SECONDS)
             .build();
     private static final MediaType JSON = MediaType.get("application/json");
-    private static final String BASE_URL = "http://192.168.31.35:8080";
+    private static final String BASE_URL = "http://192.168.68.219:8080";
 
     public static void get(String url, HTTPResult httpResult) {
         Request request = new Request.Builder()
